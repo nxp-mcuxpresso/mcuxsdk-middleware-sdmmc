@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ksdk:manifest xmlns:ksdk="http://nxp.com/ksdk/2.0/ksdk_manifest_v3.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="SDK_2.x_middleware_nxp_sd_mmc_sdio_card_MIMXRT1176_manifest_v3_14" name="SDMMC Stack" brief="Stack supporting SD, MMC, SDIO" format_version="3.14" api_version="2.0.0" xsi:schemaLocation="http://nxp.com/ksdk/2.0/ksdk_manifest_v3.0.xsd http://nxp.com/mcuxpresso/sdk/sdk_manifest_v3.14.xsd">
+<ksdk:manifest xmlns:ksdk="http://nxp.com/ksdk/2.0/ksdk_manifest_v3.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="SDK_2.x_middleware_nxp_sd_mmc_sdio_card_MCXN947_manifest_v3_14" name="SDMMC Stack" brief="Stack supporting SD, MMC, SDIO" format_version="3.14" api_version="2.0.0" xsi:schemaLocation="http://nxp.com/ksdk/2.0/ksdk_manifest_v3.0.xsd http://nxp.com/mcuxpresso/sdk/sdk_manifest_v3.14.xsd">
 
   <externalDefinitions>
-    <definition extID="MIMXRT1176xxxxx"/>
+    <definition extID="MCXN947"/>
     <definition extID="armgcc"/>
-    <definition extID="component.osa_bm.MIMXRT1176"/>
-    <definition extID="component.osa_free_rtos.MIMXRT1176"/>
-    <definition extID="component.osa_thread.MIMXRT1176"/>
-    <definition extID="platform.drivers.usdhc.MIMXRT1176"/>
+    <definition extID="component.osa_bm.MCXN947"/>
+    <definition extID="component.osa_free_rtos.MCXN947"/>
+    <definition extID="component.osa_thread.MCXN947"/>
+    <definition extID="platform.drivers.usdhc.MCXN947"/>
   </externalDefinitions>
-  <ksdk id="MCUXpressoSDK216000_middleware_nxp_sd_mmc_sdio_card_MIMXRT1176_manifest_v3_14" name="MCUXpressoSDK216000_middleware_nxp_sd_mmc_sdio_card_MIMXRT1176_manifest_v3_14" version="2.16.000" revision="2.16.000"/>
+  <ksdk id="MCUXpressoSDK216000_middleware_nxp_sd_mmc_sdio_card_MCXN947_manifest_v3_14" name="MCUXpressoSDK216000_middleware_nxp_sd_mmc_sdio_card_MCXN947_manifest_v3_14" version="2.16.000" revision="2.16.000"/>
   <components>
-    <component id="middleware.sdmmc.common.MIMXRT1176" name="sdmmc_common" brief="Middleware sdmmc common" version="2.3.0" full_name="SDMMC common stack" category="Memories/SDMMC Stack" user_visible="false" type="middleware" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.common.MCXN947" name="sdmmc_common" brief="Middleware sdmmc common" version="2.3.0" full_name="SDMMC common stack" category="Memories/SDMMC Stack" user_visible="false" type="middleware" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
-        <device_dependency value="MIMXRT1176xxxxx"/>
+        <device_dependency value="MCXN947"/>
       </dependencies>
       <source relative_path="./common" project_relative_path="inc" type="c_include">
         <files mask="fsl_sdmmc_spec.h"/>
@@ -29,9 +29,9 @@
         <include_path relative_path="./common" project_relative_path="inc" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.sdhc.template.MIMXRT1176" name="SDMMC configuration template" brief="Template configuration file to be edited by user." version="1.0.0" full_name="SDMMC configuration template" category="Memories/SDMMC Stack" user_visible="false" type="project_template" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.sdhc.template.MCXN947" name="SDMMC configuration template" brief="Template configuration file to be edited by user." version="1.0.0" full_name="SDMMC configuration template" category="Memories/SDMMC Stack" user_visible="false" type="project_template" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
-        <device_dependency value="MIMXRT1176xxxxx"/>
+        <device_dependency value="MCXN947"/>
       </dependencies>
       <source relative_path="./template/sdhc" project_relative_path="template/sdhc" config="true" type="src">
         <files mask="sdmmc_config.c"/>
@@ -46,9 +46,9 @@
         <include_path relative_path="./template/sdhc" project_relative_path="template/sdhc" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.sdif.template.MIMXRT1176" name="SDMMC configuration template" brief="Template configuration file to be edited by user." version="1.0.0" full_name="SDMMC configuration template" category="Memories/SDMMC Stack" user_visible="false" type="project_template" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.sdif.template.MCXN947" name="SDMMC configuration template" brief="Template configuration file to be edited by user." version="1.0.0" full_name="SDMMC configuration template" category="Memories/SDMMC Stack" user_visible="false" type="project_template" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
-        <device_dependency value="MIMXRT1176xxxxx"/>
+        <device_dependency value="MCXN947"/>
       </dependencies>
       <source relative_path="./template/sdif" project_relative_path="template/sdif" config="true" type="src">
         <files mask="sdmmc_config.c"/>
@@ -63,9 +63,9 @@
         <include_path relative_path="./template/sdif" project_relative_path="template/sdif" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.usdhc.template.MIMXRT1176" name="SDMMC configuration template" brief="Template configuration file to be edited by user." version="1.0.0" full_name="SDMMC configuration template" category="Memories/SDMMC Stack" user_visible="false" type="project_template" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.usdhc.template.MCXN947" name="SDMMC configuration template" brief="Template configuration file to be edited by user." version="1.0.0" full_name="SDMMC configuration template" category="Memories/SDMMC Stack" user_visible="false" type="project_template" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
-        <device_dependency value="MIMXRT1176xxxxx"/>
+        <device_dependency value="MCXN947"/>
       </dependencies>
       <source relative_path="./template/usdhc" project_relative_path="template/usdhc" config="true" type="src">
         <files mask="sdmmc_config.c"/>
@@ -80,11 +80,11 @@
         <include_path relative_path="./template/usdhc" project_relative_path="template/usdhc" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.osa.bm.MIMXRT1176" name="sdmmc_osa_bm" brief="Middleware sdmmc osa_bm" version="2.3.0" full_name="SDMMC common stack" category="Memories/SDMMC Stack" user_visible="true" type="middleware" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.osa.bm.MCXN947" name="sdmmc_osa_bm" brief="Middleware sdmmc osa_bm" version="2.3.0" full_name="SDMMC common stack" category="Memories/SDMMC Stack" user_visible="true" type="middleware" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
         <all>
-          <component_dependency value="component.osa_bm.MIMXRT1176"/>
-          <device_dependency value="MIMXRT1176xxxxx"/>
+          <component_dependency value="component.osa_bm.MCXN947"/>
+          <device_dependency value="MCXN947"/>
         </all>
       </dependencies>
       <source relative_path="./osa" project_relative_path="osa" type="c_include">
@@ -100,11 +100,11 @@
         <include_path relative_path="./osa" project_relative_path="osa" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.osa.freertos.MIMXRT1176" name="sdmmc_osa_freertos" brief="Middleware sdmmc osa_freertos" version="2.3.0" full_name="SDMMC common stack" category="Memories/SDMMC Stack" user_visible="true" type="middleware" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.osa.freertos.MCXN947" name="sdmmc_osa_freertos" brief="Middleware sdmmc osa_freertos" version="2.3.0" full_name="SDMMC common stack" category="Memories/SDMMC Stack" user_visible="true" type="middleware" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
         <all>
-          <component_dependency value="component.osa_free_rtos.MIMXRT1176"/>
-          <device_dependency value="MIMXRT1176xxxxx"/>
+          <component_dependency value="component.osa_free_rtos.MCXN947"/>
+          <device_dependency value="MCXN947"/>
         </all>
       </dependencies>
       <source relative_path="./osa" project_relative_path="osa" type="c_include">
@@ -120,11 +120,11 @@
         <include_path relative_path="./osa" project_relative_path="osa" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.osa.azurertos.MIMXRT1176" name="sdmmc_osa_azurertos" brief="Middleware sdmmc osa_azurertos" version="2.3.0" full_name="SDMMC common stack" category="Memories/SDMMC Stack" user_visible="false" type="middleware" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.osa.azurertos.MCXN947" name="sdmmc_osa_azurertos" brief="Middleware sdmmc osa_azurertos" version="2.3.0" full_name="SDMMC common stack" category="Memories/SDMMC Stack" user_visible="false" type="middleware" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
         <all>
-          <component_dependency value="component.osa_thread.MIMXRT1176"/>
-          <device_dependency value="MIMXRT1176xxxxx"/>
+          <component_dependency value="component.osa_thread.MCXN947"/>
+          <device_dependency value="MCXN947"/>
         </all>
       </dependencies>
       <source relative_path="./osa" project_relative_path="osa" type="c_include">
@@ -140,15 +140,15 @@
         <include_path relative_path="./osa" project_relative_path="osa" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.sd.MIMXRT1176" name="sd" brief="Middleware sdmmc sd" version="2.4.1" full_name="SDMMC sd stack" category="Memories/SDMMC Stack" user_visible="true" type="middleware" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.sd.MCXN947" name="sd" brief="Middleware sdmmc sd" version="2.4.1" full_name="SDMMC sd stack" category="Memories/SDMMC Stack" user_visible="true" type="middleware" package_base_path=".././" project_base_path="sdmmc">
       <defines>
         <define name="SD_ENABLED" value=""/>
       </defines>
       <dependencies>
         <all>
-          <component_dependency value="middleware.sdmmc.common.MIMXRT1176"/>
-          <component_dependency value="middleware.sdmmc.host.usdhc.MIMXRT1176"/>
-          <device_dependency value="MIMXRT1176xxxxx"/>
+          <component_dependency value="middleware.sdmmc.common.MCXN947"/>
+          <component_dependency value="middleware.sdmmc.host.usdhc.MCXN947"/>
+          <device_dependency value="MCXN947"/>
         </all>
       </dependencies>
       <source relative_path="./sd" project_relative_path="src" type="src">
@@ -167,15 +167,15 @@
         <include_path relative_path="./sd" project_relative_path="inc" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.mmc.MIMXRT1176" name="mmc" brief="Middleware sdmmc mmc" version="2.5.1" full_name="SDMMC mmc stack" category="Memories/SDMMC Stack" user_visible="true" type="middleware" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.mmc.MCXN947" name="mmc" brief="Middleware sdmmc mmc" version="2.5.1" full_name="SDMMC mmc stack" category="Memories/SDMMC Stack" user_visible="true" type="middleware" package_base_path=".././" project_base_path="sdmmc">
       <defines>
         <define name="MMC_ENABLED" value=""/>
       </defines>
       <dependencies>
         <all>
-          <component_dependency value="middleware.sdmmc.common.MIMXRT1176"/>
-          <component_dependency value="middleware.sdmmc.host.usdhc.MIMXRT1176"/>
-          <device_dependency value="MIMXRT1176xxxxx"/>
+          <component_dependency value="middleware.sdmmc.common.MCXN947"/>
+          <component_dependency value="middleware.sdmmc.host.usdhc.MCXN947"/>
+          <device_dependency value="MCXN947"/>
         </all>
       </dependencies>
       <source relative_path="./mmc" project_relative_path="src" type="src">
@@ -194,15 +194,15 @@
         <include_path relative_path="./mmc" project_relative_path="inc" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.sdio.MIMXRT1176" name="sdio" brief="Middleware sdmmc sdio" version="2.4.1" full_name="SDMMC sdio stack" category="Memories/SDMMC Stack" user_visible="true" type="middleware" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.sdio.MCXN947" name="sdio" brief="Middleware sdmmc sdio" version="2.4.1" full_name="SDMMC sdio stack" category="Memories/SDMMC Stack" user_visible="true" type="middleware" package_base_path=".././" project_base_path="sdmmc">
       <defines>
         <define name="SDIO_ENABLED" value=""/>
       </defines>
       <dependencies>
         <all>
-          <component_dependency value="middleware.sdmmc.common.MIMXRT1176"/>
-          <component_dependency value="middleware.sdmmc.host.usdhc.MIMXRT1176"/>
-          <device_dependency value="MIMXRT1176xxxxx"/>
+          <component_dependency value="middleware.sdmmc.common.MCXN947"/>
+          <component_dependency value="middleware.sdmmc.host.usdhc.MCXN947"/>
+          <device_dependency value="MCXN947"/>
         </all>
       </dependencies>
       <source relative_path="./sdio" project_relative_path="src" type="src">
@@ -221,16 +221,16 @@
         <include_path relative_path="./sdio" project_relative_path="inc" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.host.usdhc.MIMXRT1176" name="sdmmc_host_usdhc" brief="Middleware sdmmc host usdhc" version="2.6.3" full_name="Middleware sdmmc host usdhc" category="Memories/SDMMC Stack" user_visible="true" type="middleware" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.host.usdhc.MCXN947" name="sdmmc_host_usdhc" brief="Middleware sdmmc host usdhc" version="2.6.3" full_name="Middleware sdmmc host usdhc" category="Memories/SDMMC Stack" user_visible="true" type="middleware" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
         <all>
           <any_of>
-            <component_dependency value="middleware.sdmmc.host.usdhc.freertos.MIMXRT1176"/>
-            <component_dependency value="middleware.sdmmc.host.usdhc.interrupt.MIMXRT1176"/>
-            <component_dependency value="middleware.sdmmc.host.usdhc.polling.MIMXRT1176"/>
-            <component_dependency value="middleware.sdmmc.host.usdhc.azurertos.MIMXRT1176"/>
+            <component_dependency value="middleware.sdmmc.host.usdhc.freertos.MCXN947"/>
+            <component_dependency value="middleware.sdmmc.host.usdhc.interrupt.MCXN947"/>
+            <component_dependency value="middleware.sdmmc.host.usdhc.polling.MCXN947"/>
+            <component_dependency value="middleware.sdmmc.host.usdhc.azurertos.MCXN947"/>
           </any_of>
-          <device_dependency value="MIMXRT1176xxxxx"/>
+          <device_dependency value="MCXN947"/>
         </all>
       </dependencies>
       <source relative_path="./host/usdhc" project_relative_path="host" type="c_include">
@@ -246,24 +246,24 @@
         <include_path relative_path="./host/usdhc" project_relative_path="host" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.host.usdhc.freertos.MIMXRT1176" name="sdmmc_host_usdhc_freertos" brief="Middleware sdmmc host usdhc freertos" version="2.6.3" full_name="Middleware sdmmc host usdhc freertos" category="Memories/SDMMC Stack" user_visible="true" type="middleware" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.host.usdhc.freertos.MCXN947" name="sdmmc_host_usdhc_freertos" brief="Middleware sdmmc host usdhc freertos" version="2.6.3" full_name="Middleware sdmmc host usdhc freertos" category="Memories/SDMMC Stack" user_visible="true" type="middleware" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
         <all>
           <not>
-            <component_dependency value="middleware.sdmmc.host.usdhc.interrupt.MIMXRT1176"/>
+            <component_dependency value="middleware.sdmmc.host.usdhc.interrupt.MCXN947"/>
           </not>
           <not>
-            <component_dependency value="middleware.sdmmc.host.usdhc.polling.MIMXRT1176"/>
+            <component_dependency value="middleware.sdmmc.host.usdhc.polling.MCXN947"/>
           </not>
           <not>
-            <component_dependency value="middleware.sdmmc.host.usdhc.azurertos.MIMXRT1176"/>
+            <component_dependency value="middleware.sdmmc.host.usdhc.azurertos.MCXN947"/>
           </not>
-          <component_dependency value="middleware.sdmmc.common.MIMXRT1176"/>
-          <component_dependency value="middleware.sdmmc.osa.freertos.MIMXRT1176"/>
-          <component_dependency value="middleware.sdmmc.usdhc.template.MIMXRT1176"/>
-          <component_dependency value="middleware.sdmmc.host.usdhc.cache.MIMXRT1176"/>
-          <component_dependency value="platform.drivers.usdhc.MIMXRT1176"/>
-          <device_dependency value="MIMXRT1176xxxxx"/>
+          <component_dependency value="middleware.sdmmc.common.MCXN947"/>
+          <component_dependency value="middleware.sdmmc.osa.freertos.MCXN947"/>
+          <component_dependency value="middleware.sdmmc.usdhc.template.MCXN947"/>
+          <component_dependency value="middleware.sdmmc.host.usdhc.cache.MCXN947"/>
+          <component_dependency value="platform.drivers.usdhc.MCXN947"/>
+          <device_dependency value="MCXN947"/>
         </all>
       </dependencies>
       <source relative_path="./host/usdhc/non_blocking" project_relative_path="host" type="src">
@@ -282,24 +282,24 @@
         <include_path relative_path="./host/usdhc" project_relative_path="host" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.host.usdhc.interrupt.MIMXRT1176" name="sdmmc_host_usdhc_interrupt" brief="Middleware sdmmc host usdhc interrupt" version="2.6.3" full_name="Middleware sdmmc host usdhc interrupt" category="Memories/SDMMC Stack" user_visible="true" type="middleware" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.host.usdhc.interrupt.MCXN947" name="sdmmc_host_usdhc_interrupt" brief="Middleware sdmmc host usdhc interrupt" version="2.6.3" full_name="Middleware sdmmc host usdhc interrupt" category="Memories/SDMMC Stack" user_visible="true" type="middleware" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
         <all>
           <not>
-            <component_dependency value="middleware.sdmmc.host.usdhc.freertos.MIMXRT1176"/>
+            <component_dependency value="middleware.sdmmc.host.usdhc.freertos.MCXN947"/>
           </not>
           <not>
-            <component_dependency value="middleware.sdmmc.host.usdhc.polling.MIMXRT1176"/>
+            <component_dependency value="middleware.sdmmc.host.usdhc.polling.MCXN947"/>
           </not>
           <not>
-            <component_dependency value="middleware.sdmmc.host.usdhc.azurertos.MIMXRT1176"/>
+            <component_dependency value="middleware.sdmmc.host.usdhc.azurertos.MCXN947"/>
           </not>
-          <component_dependency value="middleware.sdmmc.common.MIMXRT1176"/>
-          <component_dependency value="middleware.sdmmc.osa.bm.MIMXRT1176"/>
-          <component_dependency value="platform.drivers.usdhc.MIMXRT1176"/>
-          <component_dependency value="middleware.sdmmc.usdhc.template.MIMXRT1176"/>
-          <component_dependency value="middleware.sdmmc.host.usdhc.cache.MIMXRT1176"/>
-          <device_dependency value="MIMXRT1176xxxxx"/>
+          <component_dependency value="middleware.sdmmc.common.MCXN947"/>
+          <component_dependency value="middleware.sdmmc.osa.bm.MCXN947"/>
+          <component_dependency value="platform.drivers.usdhc.MCXN947"/>
+          <component_dependency value="middleware.sdmmc.usdhc.template.MCXN947"/>
+          <component_dependency value="middleware.sdmmc.host.usdhc.cache.MCXN947"/>
+          <device_dependency value="MCXN947"/>
         </all>
       </dependencies>
       <source relative_path="./host/usdhc/non_blocking" project_relative_path="host" type="src">
@@ -318,24 +318,24 @@
         <include_path relative_path="./host/usdhc" project_relative_path="host" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.host.usdhc.polling.MIMXRT1176" name="sdmmc_host_usdhc_polling" brief="Middleware sdmmc host usdhc polling" version="2.6.3" full_name="Middleware sdmmc host usdhc polling" category="Memories/SDMMC Stack" user_visible="true" type="middleware" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.host.usdhc.polling.MCXN947" name="sdmmc_host_usdhc_polling" brief="Middleware sdmmc host usdhc polling" version="2.6.3" full_name="Middleware sdmmc host usdhc polling" category="Memories/SDMMC Stack" user_visible="true" type="middleware" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
         <all>
           <not>
-            <component_dependency value="middleware.sdmmc.host.usdhc.freertos.MIMXRT1176"/>
+            <component_dependency value="middleware.sdmmc.host.usdhc.freertos.MCXN947"/>
           </not>
           <not>
-            <component_dependency value="middleware.sdmmc.host.usdhc.interrupt.MIMXRT1176"/>
+            <component_dependency value="middleware.sdmmc.host.usdhc.interrupt.MCXN947"/>
           </not>
           <not>
-            <component_dependency value="middleware.sdmmc.host.usdhc.azurertos.MIMXRT1176"/>
+            <component_dependency value="middleware.sdmmc.host.usdhc.azurertos.MCXN947"/>
           </not>
-          <component_dependency value="middleware.sdmmc.common.MIMXRT1176"/>
-          <component_dependency value="middleware.sdmmc.osa.bm.MIMXRT1176"/>
-          <component_dependency value="platform.drivers.usdhc.MIMXRT1176"/>
-          <component_dependency value="middleware.sdmmc.usdhc.template.MIMXRT1176"/>
-          <component_dependency value="middleware.sdmmc.host.usdhc.cache.MIMXRT1176"/>
-          <device_dependency value="MIMXRT1176xxxxx"/>
+          <component_dependency value="middleware.sdmmc.common.MCXN947"/>
+          <component_dependency value="middleware.sdmmc.osa.bm.MCXN947"/>
+          <component_dependency value="platform.drivers.usdhc.MCXN947"/>
+          <component_dependency value="middleware.sdmmc.usdhc.template.MCXN947"/>
+          <component_dependency value="middleware.sdmmc.host.usdhc.cache.MCXN947"/>
+          <device_dependency value="MCXN947"/>
         </all>
       </dependencies>
       <source relative_path="./host/usdhc/blocking" project_relative_path="host" type="src">
@@ -354,23 +354,23 @@
         <include_path relative_path="./host/usdhc" project_relative_path="host" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.host.usdhc.azurertos.MIMXRT1176" name="sdmmc_host_usdhc_azurertos" brief="Middleware sdmmc host usdhc azurertos" version="2.6.3" full_name="Middleware sdmmc host usdhc azurertos" category="Memories/SDMMC Stack" user_visible="false" type="middleware" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.host.usdhc.azurertos.MCXN947" name="sdmmc_host_usdhc_azurertos" brief="Middleware sdmmc host usdhc azurertos" version="2.6.3" full_name="Middleware sdmmc host usdhc azurertos" category="Memories/SDMMC Stack" user_visible="false" type="middleware" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
         <all>
           <not>
-            <component_dependency value="middleware.sdmmc.host.usdhc.freertos.MIMXRT1176"/>
+            <component_dependency value="middleware.sdmmc.host.usdhc.freertos.MCXN947"/>
           </not>
           <not>
-            <component_dependency value="middleware.sdmmc.host.usdhc.interrupt.MIMXRT1176"/>
+            <component_dependency value="middleware.sdmmc.host.usdhc.interrupt.MCXN947"/>
           </not>
           <not>
-            <component_dependency value="middleware.sdmmc.host.usdhc.polling.MIMXRT1176"/>
+            <component_dependency value="middleware.sdmmc.host.usdhc.polling.MCXN947"/>
           </not>
-          <component_dependency value="middleware.sdmmc.common.MIMXRT1176"/>
-          <component_dependency value="middleware.sdmmc.osa.azurertos.MIMXRT1176"/>
-          <component_dependency value="middleware.sdmmc.usdhc.template.MIMXRT1176"/>
-          <component_dependency value="platform.drivers.usdhc.MIMXRT1176"/>
-          <device_dependency value="MIMXRT1176xxxxx"/>
+          <component_dependency value="middleware.sdmmc.common.MCXN947"/>
+          <component_dependency value="middleware.sdmmc.osa.azurertos.MCXN947"/>
+          <component_dependency value="middleware.sdmmc.usdhc.template.MCXN947"/>
+          <component_dependency value="platform.drivers.usdhc.MCXN947"/>
+          <device_dependency value="MCXN947"/>
         </all>
       </dependencies>
       <source relative_path="./host/usdhc/non_blocking" project_relative_path="host" type="src">
@@ -389,9 +389,9 @@
         <include_path relative_path="./host/usdhc" project_relative_path="host" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.host.usdhc.cache.MIMXRT1176" name="SDMMC host controller cache dependency" brief="SDMMC host controller cache dependency" version="1.0.0" full_name="SDMMC host controller cache dependency" category="Memories/SDMMC Stack" user_visible="false" type="middleware" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.host.usdhc.cache.MCXN947" name="SDMMC host controller cache dependency" brief="SDMMC host controller cache dependency" version="1.0.0" full_name="SDMMC host controller cache dependency" category="Memories/SDMMC Stack" user_visible="false" type="middleware" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
-        <device_dependency value="MIMXRT1176xxxxx"/>
+        <device_dependency value="MCXN947"/>
       </dependencies>
       <source relative_path="./host/usdhc" project_relative_path="host" type="doc">
         <files mask="ChangeLogKSDK.txt"/>

@@ -8,7 +8,7 @@
     <definition extID="component.osa_free_rtos.K32L3A60"/>
     <definition extID="platform.drivers.usdhc.K32L3A60"/>
   </externalDefinitions>
-  <ksdk id="MCUXpressoSDK2150_middleware_nxp_sd_mmc_sdio_card_K32L3A60_manifest_v3_14" name="MCUXpressoSDK2150_middleware_nxp_sd_mmc_sdio_card_K32L3A60_manifest_v3_14" version="2.15.0" revision="2.15.0"/>
+  <ksdk id="MCUXpressoSDK216000_middleware_nxp_sd_mmc_sdio_card_K32L3A60_manifest_v3_14" name="MCUXpressoSDK216000_middleware_nxp_sd_mmc_sdio_card_K32L3A60_manifest_v3_14" version="2.16.000" revision="2.16.000"/>
   <components>
     <component id="middleware.sdmmc.common.K32L3A60" name="sdmmc_common" brief="Middleware sdmmc common" version="2.3.0" full_name="SDMMC common stack" category="Memories/SDMMC Stack" user_visible="false" type="middleware" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
@@ -146,7 +146,7 @@
         <include_path relative_path="./sd" project_relative_path="inc" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.mmc.K32L3A60" name="mmc" brief="Middleware sdmmc mmc" version="2.5.0" full_name="SDMMC mmc stack" category="Memories/SDMMC Stack" user_visible="true" type="middleware" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.mmc.K32L3A60" name="mmc" brief="Middleware sdmmc mmc" version="2.5.1" full_name="SDMMC mmc stack" category="Memories/SDMMC Stack" user_visible="true" type="middleware" package_base_path=".././" project_base_path="sdmmc">
       <defines>
         <define name="MMC_ENABLED" value=""/>
       </defines>

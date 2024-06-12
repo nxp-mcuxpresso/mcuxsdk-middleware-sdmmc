@@ -200,8 +200,6 @@ status_t SDMMCHOST_Init(sdmmchost_t *host)
 
 void SDMMCHOST_Reset(sdmmchost_t *host)
 {
-    /* disable all the interrupt */
-    SDIF_DisableInterrupt(host->hostController.base, kSDIF_AllInterruptStatus);
     /* make sure host controller release all the bus line. */
     (void)SDIF_Reset(host->hostController.base, kSDIF_ResetAll, 100);
     /* clear all interrupt/DMA status */

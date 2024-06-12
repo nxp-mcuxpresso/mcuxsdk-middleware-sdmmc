@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ksdk:manifest xmlns:ksdk="http://nxp.com/ksdk/2.0/ksdk_manifest_v3.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="SDK_2.x_middleware_nxp_sd_mmc_sdio_card_LPC55S06_manifest_v3_14" name="SDMMC Stack" brief="Stack supporting SD, MMC, SDIO" format_version="3.14" api_version="2.0.0" xsi:schemaLocation="http://nxp.com/ksdk/2.0/ksdk_manifest_v3.0.xsd http://nxp.com/mcuxpresso/sdk/sdk_manifest_v3.14.xsd">
+<ksdk:manifest xmlns:ksdk="http://nxp.com/ksdk/2.0/ksdk_manifest_v3.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="SDK_2.x_middleware_nxp_sd_mmc_sdio_card_RW612_manifest_v3_14" name="SDMMC Stack" brief="Stack supporting SD, MMC, SDIO" format_version="3.14" api_version="2.0.0" xsi:schemaLocation="http://nxp.com/ksdk/2.0/ksdk_manifest_v3.0.xsd http://nxp.com/mcuxpresso/sdk/sdk_manifest_v3.14.xsd">
 
   <externalDefinitions>
-    <definition extID="LPC55S06"/>
+    <definition extID="RW612"/>
     <definition extID="armgcc"/>
   </externalDefinitions>
-  <ksdk id="MCUXpressoSDK216000_middleware_nxp_sd_mmc_sdio_card_LPC55S06_manifest_v3_14" name="MCUXpressoSDK216000_middleware_nxp_sd_mmc_sdio_card_LPC55S06_manifest_v3_14" version="2.16.000" revision="2.16.000"/>
+  <ksdk id="MCUXpressoSDK216000_middleware_nxp_sd_mmc_sdio_card_RW612_manifest_v3_14" name="MCUXpressoSDK216000_middleware_nxp_sd_mmc_sdio_card_RW612_manifest_v3_14" version="2.16.000" revision="2.16.000"/>
   <components>
-    <component id="middleware.sdmmc.common.LPC55S06" name="sdmmc_common" brief="Middleware sdmmc common" version="2.3.0" full_name="SDMMC common stack" category="Memories/SDMMC Stack" user_visible="false" type="middleware" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.common.RW612" name="sdmmc_common" brief="Middleware sdmmc common" version="2.3.0" full_name="SDMMC common stack" category="Memories/SDMMC Stack" user_visible="false" type="middleware" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
-        <device_dependency value="LPC55S06"/>
+        <device_dependency value="RW612"/>
       </dependencies>
       <source relative_path="./common" project_relative_path="inc" type="c_include">
         <files mask="fsl_sdmmc_spec.h"/>
@@ -25,9 +25,9 @@
         <include_path relative_path="./common" project_relative_path="inc" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.sdhc.template.LPC55S06" name="SDMMC configuration template" brief="Template configuration file to be edited by user." version="1.0.0" full_name="SDMMC configuration template" category="Memories/SDMMC Stack" user_visible="false" type="project_template" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.sdhc.template.RW612" name="SDMMC configuration template" brief="Template configuration file to be edited by user." version="1.0.0" full_name="SDMMC configuration template" category="Memories/SDMMC Stack" user_visible="false" type="project_template" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
-        <device_dependency value="LPC55S06"/>
+        <device_dependency value="RW612"/>
       </dependencies>
       <source relative_path="./template/sdhc" project_relative_path="template/sdhc" config="true" type="src">
         <files mask="sdmmc_config.c"/>
@@ -42,9 +42,9 @@
         <include_path relative_path="./template/sdhc" project_relative_path="template/sdhc" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.sdif.template.LPC55S06" name="SDMMC configuration template" brief="Template configuration file to be edited by user." version="1.0.0" full_name="SDMMC configuration template" category="Memories/SDMMC Stack" user_visible="false" type="project_template" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.sdif.template.RW612" name="SDMMC configuration template" brief="Template configuration file to be edited by user." version="1.0.0" full_name="SDMMC configuration template" category="Memories/SDMMC Stack" user_visible="false" type="project_template" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
-        <device_dependency value="LPC55S06"/>
+        <device_dependency value="RW612"/>
       </dependencies>
       <source relative_path="./template/sdif" project_relative_path="template/sdif" config="true" type="src">
         <files mask="sdmmc_config.c"/>
@@ -59,9 +59,9 @@
         <include_path relative_path="./template/sdif" project_relative_path="template/sdif" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.usdhc.template.LPC55S06" name="SDMMC configuration template" brief="Template configuration file to be edited by user." version="1.0.0" full_name="SDMMC configuration template" category="Memories/SDMMC Stack" user_visible="false" type="project_template" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.usdhc.template.RW612" name="SDMMC configuration template" brief="Template configuration file to be edited by user." version="1.0.0" full_name="SDMMC configuration template" category="Memories/SDMMC Stack" user_visible="false" type="project_template" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
-        <device_dependency value="LPC55S06"/>
+        <device_dependency value="RW612"/>
       </dependencies>
       <source relative_path="./template/usdhc" project_relative_path="template/usdhc" config="true" type="src">
         <files mask="sdmmc_config.c"/>
@@ -76,9 +76,9 @@
         <include_path relative_path="./template/usdhc" project_relative_path="template/usdhc" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.host.usdhc.cache.LPC55S06" name="SDMMC host controller cache dependency" brief="SDMMC host controller cache dependency" version="1.0.0" full_name="SDMMC host controller cache dependency" category="Memories/SDMMC Stack" user_visible="false" type="middleware" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.host.usdhc.cache.RW612" name="SDMMC host controller cache dependency" brief="SDMMC host controller cache dependency" version="1.0.0" full_name="SDMMC host controller cache dependency" category="Memories/SDMMC Stack" user_visible="false" type="middleware" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
-        <device_dependency value="LPC55S06"/>
+        <device_dependency value="RW612"/>
       </dependencies>
       <source relative_path="./host/usdhc" project_relative_path="host" type="doc">
         <files mask="ChangeLogKSDK.txt"/>

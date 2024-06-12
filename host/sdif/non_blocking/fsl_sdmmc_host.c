@@ -412,9 +412,6 @@ void SDMMCHOST_Reset(sdmmchost_t *host)
 {
     SDMMC_OSAMutexLock(&host->lock, osaWaitForever_c);
 
-    /* disable all the interrupt */
-    SDIF_DisableInterrupt(host->hostController.base, kSDIF_AllInterruptStatus);
-
     /* make sure host controller release all the bus line. */
     (void)SDIF_Reset(host->hostController.base, kSDIF_ResetAll, SDMMCHOST_RESET_TIMEOUT_VALUE);
 

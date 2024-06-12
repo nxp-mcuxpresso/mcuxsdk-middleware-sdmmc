@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ksdk:manifest xmlns:ksdk="http://nxp.com/ksdk/2.0/ksdk_manifest_v3.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="SDK_2.x_middleware_nxp_sd_mmc_sdio_card_K32L2B31A_manifest_v3_14" name="SDMMC Stack" brief="Stack supporting SD, MMC, SDIO" format_version="3.14" api_version="2.0.0" xsi:schemaLocation="http://nxp.com/ksdk/2.0/ksdk_manifest_v3.0.xsd http://nxp.com/mcuxpresso/sdk/sdk_manifest_v3.14.xsd">
+<ksdk:manifest xmlns:ksdk="http://nxp.com/ksdk/2.0/ksdk_manifest_v3.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="SDK_2.x_middleware_nxp_sd_mmc_sdio_card_MCXC242_manifest_v3_14" name="SDMMC Stack" brief="Stack supporting SD, MMC, SDIO" format_version="3.14" api_version="2.0.0" xsi:schemaLocation="http://nxp.com/ksdk/2.0/ksdk_manifest_v3.0.xsd http://nxp.com/mcuxpresso/sdk/sdk_manifest_v3.14.xsd">
 
   <externalDefinitions>
-    <definition extID="K32L2B31xxxxA"/>
+    <definition extID="MCXC242"/>
     <definition extID="armgcc"/>
-    <definition extID="platform.drivers.spi.K32L2B31A"/>
+    <definition extID="platform.drivers.spi.MCXC242"/>
   </externalDefinitions>
-  <ksdk id="MCUXpressoSDK216000_middleware_nxp_sd_mmc_sdio_card_K32L2B31A_manifest_v3_14" name="MCUXpressoSDK216000_middleware_nxp_sd_mmc_sdio_card_K32L2B31A_manifest_v3_14" version="2.16.000" revision="2.16.000"/>
+  <ksdk id="MCUXpressoSDK216000_middleware_nxp_sd_mmc_sdio_card_MCXC242_manifest_v3_14" name="MCUXpressoSDK216000_middleware_nxp_sd_mmc_sdio_card_MCXC242_manifest_v3_14" version="2.16.000" revision="2.16.000"/>
   <components>
-    <component id="middleware.sdmmc.common.K32L2B31A" name="sdmmc_common" brief="Middleware sdmmc common" version="2.3.0" full_name="SDMMC common stack" category="Memories/SDMMC Stack" user_visible="false" type="middleware" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.common.MCXC242" name="sdmmc_common" brief="Middleware sdmmc common" version="2.3.0" full_name="SDMMC common stack" category="Memories/SDMMC Stack" user_visible="false" type="middleware" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
-        <device_dependency value="K32L2B31xxxxA"/>
+        <device_dependency value="MCXC242"/>
       </dependencies>
       <source relative_path="./common" project_relative_path="inc" type="c_include">
         <files mask="fsl_sdmmc_spec.h"/>
@@ -26,9 +26,9 @@
         <include_path relative_path="./common" project_relative_path="inc" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.sdhc.template.K32L2B31A" name="SDMMC configuration template" brief="Template configuration file to be edited by user." version="1.0.0" full_name="SDMMC configuration template" category="Memories/SDMMC Stack" user_visible="false" type="project_template" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.sdhc.template.MCXC242" name="SDMMC configuration template" brief="Template configuration file to be edited by user." version="1.0.0" full_name="SDMMC configuration template" category="Memories/SDMMC Stack" user_visible="false" type="project_template" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
-        <device_dependency value="K32L2B31xxxxA"/>
+        <device_dependency value="MCXC242"/>
       </dependencies>
       <source relative_path="./template/sdhc" project_relative_path="template/sdhc" config="true" type="src">
         <files mask="sdmmc_config.c"/>
@@ -43,9 +43,9 @@
         <include_path relative_path="./template/sdhc" project_relative_path="template/sdhc" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.sdif.template.K32L2B31A" name="SDMMC configuration template" brief="Template configuration file to be edited by user." version="1.0.0" full_name="SDMMC configuration template" category="Memories/SDMMC Stack" user_visible="false" type="project_template" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.sdif.template.MCXC242" name="SDMMC configuration template" brief="Template configuration file to be edited by user." version="1.0.0" full_name="SDMMC configuration template" category="Memories/SDMMC Stack" user_visible="false" type="project_template" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
-        <device_dependency value="K32L2B31xxxxA"/>
+        <device_dependency value="MCXC242"/>
       </dependencies>
       <source relative_path="./template/sdif" project_relative_path="template/sdif" config="true" type="src">
         <files mask="sdmmc_config.c"/>
@@ -60,9 +60,9 @@
         <include_path relative_path="./template/sdif" project_relative_path="template/sdif" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.usdhc.template.K32L2B31A" name="SDMMC configuration template" brief="Template configuration file to be edited by user." version="1.0.0" full_name="SDMMC configuration template" category="Memories/SDMMC Stack" user_visible="false" type="project_template" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.usdhc.template.MCXC242" name="SDMMC configuration template" brief="Template configuration file to be edited by user." version="1.0.0" full_name="SDMMC configuration template" category="Memories/SDMMC Stack" user_visible="false" type="project_template" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
-        <device_dependency value="K32L2B31xxxxA"/>
+        <device_dependency value="MCXC242"/>
       </dependencies>
       <source relative_path="./template/usdhc" project_relative_path="template/usdhc" config="true" type="src">
         <files mask="sdmmc_config.c"/>
@@ -77,14 +77,14 @@
         <include_path relative_path="./template/usdhc" project_relative_path="template/usdhc" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.sdspi.K32L2B31A" name="sdspi" brief="Middleware sdmmc sdspi" version="2.2.1" full_name="SDMMC sdspi stack" category="Memories/SDMMC Stack" user_visible="true" type="middleware" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.sdspi.MCXC242" name="sdspi" brief="Middleware sdmmc sdspi" version="2.2.1" full_name="SDMMC sdspi stack" category="Memories/SDMMC Stack" user_visible="true" type="middleware" package_base_path=".././" project_base_path="sdmmc">
       <defines>
         <define name="SDSPI_ENABLED" value=""/>
       </defines>
       <dependencies>
         <all>
-          <component_dependency value="platform.drivers.spi.K32L2B31A"/>
-          <device_dependency value="K32L2B31xxxxA"/>
+          <component_dependency value="platform.drivers.spi.MCXC242"/>
+          <device_dependency value="MCXC242"/>
         </all>
       </dependencies>
       <source relative_path="./sdspi" project_relative_path="src" type="src">
@@ -107,9 +107,9 @@
         <include_path relative_path="./common" project_relative_path="inc" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.sdmmc.host.usdhc.cache.K32L2B31A" name="SDMMC host controller cache dependency" brief="SDMMC host controller cache dependency" version="1.0.0" full_name="SDMMC host controller cache dependency" category="Memories/SDMMC Stack" user_visible="false" type="middleware" package_base_path=".././" project_base_path="sdmmc">
+    <component id="middleware.sdmmc.host.usdhc.cache.MCXC242" name="SDMMC host controller cache dependency" brief="SDMMC host controller cache dependency" version="1.0.0" full_name="SDMMC host controller cache dependency" category="Memories/SDMMC Stack" user_visible="false" type="middleware" package_base_path=".././" project_base_path="sdmmc">
       <dependencies>
-        <device_dependency value="K32L2B31xxxxA"/>
+        <device_dependency value="MCXC242"/>
       </dependencies>
       <source relative_path="./host/usdhc" project_relative_path="host" type="doc">
         <files mask="ChangeLogKSDK.txt"/>
