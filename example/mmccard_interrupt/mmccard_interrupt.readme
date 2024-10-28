@@ -1,0 +1,8 @@
+Overview
+========
+The MMCCARD Interrupt project is a demonstration program that uses the SDK software. It reads/writes
+/erases the MMC card continusly. The purpose of this example is to show how to use MMCCARD driver and
+show how to use interrupt based transfer API in SDK software driver to access MMC card.
+
+Note:
+User can use MMC plus card or emmc(on board IC, but not recommand use emmc socket,due to high speed timing restriction)

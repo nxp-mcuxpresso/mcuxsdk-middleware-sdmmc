@@ -1,0 +1,6 @@
+Overview
+========
+The mmccard FatFs FreeRTOS project is a demonstration program that uses the SDK software. It reads/writes
+/erases the mmc card continuously. The purpose of this example is to show how to use MMCCARD driver
+with FatFs and freeRTOS in SDK software to access MMC card.
+Note: The output log of the case is not constant, since difference of card access speed and platform will affect the behavior of card access task.

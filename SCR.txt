@@ -1,0 +1,13 @@
+NXP Software Content Register
+
+Package: mcux-sdk-sdmmc
+Version: 2.7.0
+Outgoing License: BSD-3-Clause
+License File: LICENSE
+Type of Content: source code
+Description and comments: A software component support SD card, eMMC card, SDIO card, and SD through SPI.
+Release Location: https://github.com/nxp-mcuxpresso/mcux-sdk-sdmmc
+URL: None
+Origin: 
+      NXP (BSD-3-Clause)
+

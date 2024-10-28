@@ -1,0 +1,12 @@
+Overview
+========
+The freertos sdio used to demonstrate how to use SDK sdio driver with freertos.
+There are three tasks in this example:
+CardDetectTask
+AccessCardTask
+CardInterruptTask
+CardDetectTask is used to monitor the card insertion event, if the card is not inserted, it will wait until card insert and then this task will perform card initialization and release a card access semaphore, then continuous wait card inserts or remove event and going to sleep.
+AccessCardTask is used to access the sdio card, after card access semaphore is taken, it will perform some simple card access operation, then release the card access semaphore and then going sleep to wait for user input.
+CardInterruptTask is used to monitor the sdio interrupt event, this task need take two semaphore card access semaphore(which is released in other tasks) and card interrupt semaphore(which is released in card interrupt ISR), if the two semaphores is taken, it will perform a simple read to check the pending io interrupt, then release a card access semaphore and continuous wait card interrupt.
+In this example, it demonstrates to detect card insertion/access card/card interrupt handling.
+Note: If the sdio card need WL_REG_ON, please connect WL_REG_ON to the sdio card VDD pin for this example.

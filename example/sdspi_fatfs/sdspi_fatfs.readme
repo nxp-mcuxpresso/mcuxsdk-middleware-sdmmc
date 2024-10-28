@@ -1,0 +1,36 @@
+Overview
+========
+This example show application of FatFs with SD card controled over SPI interface. It mounts a file
+system based on a SD card then does "creat directory/read directory/create file/write file/read file"
+operation.
+
+Running the demo
+================
+When the example runs successfully,you can see the similar information from the terminal as below.
+
+~~~~~~~~~~~~~~~~~~~~~
+FATFS example to demonstrate how to use FATFS with SD card over SPI.
+
+Please inserts a card into board.
+Detected SD card inserted.
+
+Make file system......The time may be long if the card capacity is big.
+
+Create directory......
+
+Create a file in that directory......
+
+List the file in that directory......
+General file : F_1.DAT.
+Directory file : DIR_2.
+
+Write/read file until encounters error......
+
+Write to above created file.
+Read from above created file.
+Compare the read/write content......
+The read/write content is consistent.
+
+Input 'q' to quit read/write.
+Input other char to read/write file again.
+~~~~~~~~~~~~~~~~~~~~~

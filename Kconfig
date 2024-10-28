@@ -1,0 +1,90 @@
+
+menu "sdmmc"
+    # common
+    config MCUX_COMPONENT_middleware.sdmmc.common
+        bool
+
+    config MCUX_COMPONENT_middleware.sdmmc.osa
+        bool
+        select MCUX_COMPONENT_component.osa
+
+    # stack
+    config MCUX_COMPONENT_middleware.sdmmc.sd
+        bool "SD card support"
+        select MCUX_COMPONENT_middleware.sdmmc.common
+
+    config MCUX_COMPONENT_middleware.sdmmc.sdspi
+        bool "SD card support (SPI mode)"
+        select MCUX_COMPONENT_middleware.sdmmc.common
+
+    config MCUX_COMPONENT_middleware.sdmmc.mmc
+        bool "MMC card support"
+        select MCUX_COMPONENT_middleware.sdmmc.common
+
+    config MCUX_COMPONENT_middleware.sdmmc.sdio
+        bool "SDIO card support"
+        select MCUX_COMPONENT_middleware.sdmmc.common
+
+    # host
+    config MCUX_COMPONENT_middleware.sdmmc.host.sdhc
+        bool "SDHC host controller support"
+        select MCUX_COMPONENT_middleware.sdmmc.common
+        select MCUX_COMPONENT_middleware.sdmmc.osa
+        select MCUX_COMPONENT_middleware.sdmmc.sdhc.template
+        select MCUX_COMPONENT_driver.sdhc
+
+        if MCUX_COMPONENT_middleware.sdmmc.host.sdhc
+            choice
+                prompt "Transfer mode selection"
+                default MCUX_COMPONENT_middleware.sdmmc.host.sdhc.blocking
+                config MCUX_COMPONENT_middleware.sdmmc.host.sdhc.blocking
+                    bool "Blocking mode"
+                config MCUX_COMPONENT_middleware.sdmmc.host.sdhc.non_blocking
+                    bool "Non-blocking mode"
+            endchoice
+        endif
+
+    config MCUX_COMPONENT_middleware.sdmmc.host.sdif
+        bool "SDIF host controller support"
+        select MCUX_COMPONENT_middleware.sdmmc.common
+        select MCUX_COMPONENT_middleware.sdmmc.osa
+        select MCUX_COMPONENT_middleware.sdmmc.sdif.template
+        select MCUX_COMPONENT_driver.sdif
+
+        if MCUX_COMPONENT_middleware.sdmmc.host.sdif
+            choice
+                prompt "Transfer mode selection"
+                default MCUX_COMPONENT_middleware.sdmmc.host.sdif.blocking
+                config MCUX_COMPONENT_middleware.sdmmc.host.sdif.blocking
+                    bool "Blocking mode"
+                config MCUX_COMPONENT_middleware.sdmmc.host.sdif.non_blocking
+                    bool "Non-blocking mode"
+            endchoice
+        endif
+
+    config MCUX_COMPONENT_middleware.sdmmc.host.usdhc
+        bool "uSDHC host controller support"
+        select MCUX_COMPONENT_middleware.sdmmc.common
+        select MCUX_COMPONENT_middleware.sdmmc.osa
+        select MCUX_COMPONENT_middleware.sdmmc.usdhc.template
+        select MCUX_COMPONENT_driver.usdhc
+
+        if MCUX_COMPONENT_middleware.sdmmc.host.usdhc
+            choice
+                prompt "Transfer mode selection"
+                default MCUX_COMPONENT_middleware.sdmmc.host.usdhc.blocking
+                config MCUX_COMPONENT_middleware.sdmmc.host.usdhc.blocking
+                    bool "Blocking mode"
+                config MCUX_COMPONENT_middleware.sdmmc.host.usdhc.non_blocking
+                    bool "Non-blocking mode"
+            endchoice
+        endif
+
+    # template
+    config MCUX_COMPONENT_middleware.sdmmc.sdhc.template
+        bool
+    config MCUX_COMPONENT_middleware.sdmmc.sdif.template
+        bool
+    config MCUX_COMPONENT_middleware.sdmmc.usdhc.template
+        bool
+endmenu
