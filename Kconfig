@@ -34,7 +34,7 @@ menu "sdmmc"
         select MCUX_COMPONENT_driver.sdhc
 
         if MCUX_COMPONENT_middleware.sdmmc.host.sdhc
-            choice
+            choice MCUX_COMPONENT_middleware.sdmmc.host.sdhc.selection
                 prompt "Transfer mode selection"
                 default MCUX_COMPONENT_middleware.sdmmc.host.sdhc.blocking
                 config MCUX_COMPONENT_middleware.sdmmc.host.sdhc.blocking
@@ -52,7 +52,7 @@ menu "sdmmc"
         select MCUX_COMPONENT_driver.sdif
 
         if MCUX_COMPONENT_middleware.sdmmc.host.sdif
-            choice
+            choice MCUX_COMPONENT_middleware.sdmmc.host.sdif.selection
                 prompt "Transfer mode selection"
                 default MCUX_COMPONENT_middleware.sdmmc.host.sdif.blocking
                 config MCUX_COMPONENT_middleware.sdmmc.host.sdif.blocking
@@ -70,7 +70,7 @@ menu "sdmmc"
         select MCUX_COMPONENT_driver.usdhc
 
         if MCUX_COMPONENT_middleware.sdmmc.host.usdhc
-            choice
+            choice MCUX_COMPONENT_middleware.sdmmc.host.usdhc.selection
                 prompt "Transfer mode selection"
                 default MCUX_COMPONENT_middleware.sdmmc.host.usdhc.blocking
                 config MCUX_COMPONENT_middleware.sdmmc.host.usdhc.blocking
