@@ -10,24 +10,24 @@ menu "sdmmc"
 
     # stack
     config MCUX_COMPONENT_middleware.sdmmc.sd
-        bool "SD card support"
+        bool "SD card"
         select MCUX_COMPONENT_middleware.sdmmc.common
 
     config MCUX_COMPONENT_middleware.sdmmc.sdspi
-        bool "SD card support (SPI mode)"
+        bool "SD card (SPI mode)"
         select MCUX_COMPONENT_middleware.sdmmc.common
 
     config MCUX_COMPONENT_middleware.sdmmc.mmc
-        bool "MMC card support"
+        bool "MMC card"
         select MCUX_COMPONENT_middleware.sdmmc.common
 
     config MCUX_COMPONENT_middleware.sdmmc.sdio
-        bool "SDIO card support"
+        bool "SDIO card"
         select MCUX_COMPONENT_middleware.sdmmc.common
 
     # host
     config MCUX_COMPONENT_middleware.sdmmc.host.sdhc
-        bool "SDHC host controller support"
+        bool "SDHC host controller"
         select MCUX_COMPONENT_middleware.sdmmc.common
         select MCUX_COMPONENT_middleware.sdmmc.osa
         select MCUX_COMPONENT_middleware.sdmmc.sdhc.template
@@ -45,7 +45,7 @@ menu "sdmmc"
         endif
 
     config MCUX_COMPONENT_middleware.sdmmc.host.sdif
-        bool "SDIF host controller support"
+        bool "SDIF host controller"
         select MCUX_COMPONENT_middleware.sdmmc.common
         select MCUX_COMPONENT_middleware.sdmmc.osa
         select MCUX_COMPONENT_middleware.sdmmc.sdif.template
@@ -63,7 +63,7 @@ menu "sdmmc"
         endif
 
     config MCUX_COMPONENT_middleware.sdmmc.host.usdhc
-        bool "uSDHC host controller support"
+        bool "uSDHC host controller"
         select MCUX_COMPONENT_middleware.sdmmc.common
         select MCUX_COMPONENT_middleware.sdmmc.osa
         select MCUX_COMPONENT_middleware.sdmmc.usdhc.template
