@@ -26,6 +26,7 @@ if (CONFIG_MCUX_COMPONENT_middleware.sdmmc.sd)
     )
     mcux_add_configuration(
         CC "-DSD_ENABLED=1"
+        CX "-DSD_ENABLED=1"
     )
 endif()
 
@@ -38,6 +39,7 @@ if (CONFIG_MCUX_COMPONENT_middleware.sdmmc.mmc)
     )
     mcux_add_configuration(
         CC "-DMMC_ENABLED=1"
+        CX "-DMMC_ENABLED=1"
     )
 endif()
 
@@ -50,6 +52,7 @@ if (CONFIG_MCUX_COMPONENT_middleware.sdmmc.sdio)
     )
     mcux_add_configuration(
         CC "-DSDIO_ENABLED=1"
+        CX "-DSDIO_ENABLED=1"
     )
 endif()
 
@@ -62,6 +65,7 @@ if (CONFIG_MCUX_COMPONENT_middleware.sdmmc.sdspi)
     )
     mcux_add_configuration(
         CC "-DSDSPI_ENABLED=1"
+        CX "-DSDSPI_ENABLED=1"
     )
 endif()
 
