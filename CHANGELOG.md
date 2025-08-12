@@ -1,5 +1,10 @@
 ### SDMMC Middleware Change Log
 
+#### 2.7.1
+
+- Bug Fixes
+  - sd/mmc: fixed address alignment with cache line.
+
 #### 2.7.0
 
 - Improvements
