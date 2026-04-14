@@ -1897,6 +1897,7 @@ void SDIO_CardDeinit(sdio_card_t *card)
 status_t SDIO_HostInit(sdio_card_t *card)
 {
     assert(card != NULL);
+    assert(card->usrParam.cd != NULL);
 
     if (!card->isHostReady)
     {
