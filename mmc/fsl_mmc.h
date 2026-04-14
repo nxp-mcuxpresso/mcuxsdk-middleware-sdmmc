@@ -21,7 +21,7 @@
  * Definitions
  ******************************************************************************/
 /*! @brief Middleware mmc version. */
-#define FSL_MMC_DRIVER_VERSION (MAKE_VERSION(2U, 5U, 0U)) /*2.5.0*/
+#define FSL_MMC_DRIVER_VERSION FSL_SDMMC_DRIVER_VERSION
 
 /*! @brief MMC card flags
  * @anchor _mmc_card_flag

@@ -1,5 +1,11 @@
 ### SDMMC Middleware Change Log
 
+#### 2.7.2
+
+- Bug Fixes
+  - sdio: check card->usrParam.cd before using it.
+  - fixed version for sub-drivers. Unified version was used since sdk-ng.
+
 #### 2.7.1
 
 - Bug Fixes

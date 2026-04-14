@@ -21,7 +21,7 @@
  * Definitions
  *****************************************************************************/
 /*! @brief Driver version. */
-#define FSL_SDSPI_DRIVER_VERSION (MAKE_VERSION(2U, 2U, 1U)) /*2.2.1*/
+#define FSL_SDSPI_DRIVER_VERSION FSL_SDMMC_DRIVER_VERSION
 
 /*! @brief Default block size */
 #define FSL_SDSPI_DEFAULT_BLOCK_SIZE (512U)

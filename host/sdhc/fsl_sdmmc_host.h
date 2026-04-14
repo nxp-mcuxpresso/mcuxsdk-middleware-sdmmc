@@ -22,7 +22,7 @@
  * Definitions
  ******************************************************************************/
 /*! @brief Middleware adapter version. */
-#define FSL_SDMMC_HOST_ADAPTER_VERSION (MAKE_VERSION(2U, 4U, 1U)) /*2.4.1*/
+#define FSL_SDMMC_HOST_ADAPTER_VERSION FSL_SDMMC_DRIVER_VERSION
 
 /*! @brief sdmmc host capability */
 enum

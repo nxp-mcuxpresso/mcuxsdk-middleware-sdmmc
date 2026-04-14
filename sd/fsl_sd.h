@@ -20,7 +20,7 @@
  * Definitions
  ******************************************************************************/
 /*! @brief Driver version. */
-#define FSL_SD_DRIVER_VERSION (MAKE_VERSION(2U, 4U, 2U)) /*2.4.2*/
+#define FSL_SD_DRIVER_VERSION FSL_SDMMC_DRIVER_VERSION
 
 /*! @brief SD card flags
  * @anchor _sd_card_flag
