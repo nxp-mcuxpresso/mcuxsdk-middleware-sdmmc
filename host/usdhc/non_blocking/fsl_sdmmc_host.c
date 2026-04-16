@@ -739,14 +739,14 @@ status_t SDMMCHOST_Init(sdmmchost_t *host)
     usdhc_transfer_callback_t usdhcCallback = {0};
     usdhc_host_t *usdhcHost                 = &(host->hostController);
 #if defined FSL_FEATURE_USDHC_INSTANCE_SUPPORT_8_BIT_WIDTHn
-    uint32_t bus8bitCapability = (uint32_t)FSL_FEATURE_USDHC_INSTANCE_SUPPORT_8_BIT_WIDTHn(host->hostController.base);
+    uint32_t bus8bitCapability = FSL_FEATURE_USDHC_INSTANCE_SUPPORT_8_BIT_WIDTHn(host->hostController.base) == 1 ? 1U : 0U;
 #else
     uint32_t bus8bitCapability    = 0U;
 #endif
 
 #if (defined(FSL_FEATURE_USDHC_HAS_HS400_MODE) && (FSL_FEATURE_USDHC_HAS_HS400_MODE))
 #if defined FSL_FEATURE_USDHC_INSTANCE_SUPPORT_HS400_MODEn
-    uint32_t hs400Capability = (uint32_t)FSL_FEATURE_USDHC_INSTANCE_SUPPORT_HS400_MODEn(host->hostController.base);
+    uint32_t hs400Capability = FSL_FEATURE_USDHC_INSTANCE_SUPPORT_HS400_MODEn(host->hostController.base) == 1 ? 1U : 0U;
 #else
     uint32_t hs400Capability = 0U;
 #endif

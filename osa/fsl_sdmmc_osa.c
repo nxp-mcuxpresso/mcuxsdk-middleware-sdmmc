@@ -251,6 +251,7 @@ status_t SDMMC_OSAMutexDestroy(void *mutexHandle)
 void SDMMC_OSADelay(uint32_t milliseconds)
 {
 #if (defined FSL_OSA_BM_TIMER_CONFIG) && (FSL_OSA_BM_TIMER_CONFIG == FSL_OSA_BM_TIMER_NONE)
+    assert(milliseconds <= UINT32_MAX / 1000U);
     SDK_DelayAtLeastUs(milliseconds * 1000U, SDK_DEVICE_MAXIMUM_CPU_CLOCK_FREQUENCY);
 #else
     OSA_TimeDelay(milliseconds);

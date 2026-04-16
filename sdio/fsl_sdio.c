@@ -357,7 +357,7 @@ static status_t SDIO_IO_Access_Direct(sdio_card_t *card,
 
     if ((dataOut != NULL) && (direction == kSDIO_IOWrite))
     {
-        command.argument |= (1UL << SDIO_CMD_ARGUMENT_RW_POS) | ((uint32_t)rawFlag << SDIO_DIRECT_CMD_ARGUMENT_RAW_POS);
+        command.argument |= (1UL << SDIO_CMD_ARGUMENT_RW_POS) | ((rawFlag ? 1U : 0U) << SDIO_DIRECT_CMD_ARGUMENT_RAW_POS);
     }
 
     if (direction == kSDIO_IOWrite)
@@ -1533,8 +1533,8 @@ static status_t SDIO_DecodeCIS(
         /* only decode MANIFID,FUNCID,FUNCE here  */
         if (tplCode == SDIO_TPL_CODE_MANIFID)
         {
-            card->commonCIS.mID   = dataBuffer[0U] | ((uint16_t)dataBuffer[1U] << 8U);
-            card->commonCIS.mInfo = dataBuffer[2U] | ((uint16_t)dataBuffer[3U] << 8U);
+            card->commonCIS.mID   = ((uint32_t)dataBuffer[0U] | ((uint32_t)dataBuffer[1U] << 8U)) & 0xFFFFU;
+            card->commonCIS.mInfo = ((uint32_t)dataBuffer[2U] | ((uint32_t)dataBuffer[3U] << 8U)) & 0xFFFFU;
         }
         else if (tplCode == SDIO_TPL_CODE_FUNCID)
         {
@@ -1543,7 +1543,7 @@ static status_t SDIO_DecodeCIS(
         else if (tplCode == SDIO_TPL_CODE_FUNCE)
         {
             /* max transfer block size and data size */
-            card->commonCIS.fn0MaxBlkSize = dataBuffer[1U] | ((uint16_t)dataBuffer[2U] << 8U);
+            card->commonCIS.fn0MaxBlkSize = ((uint32_t)dataBuffer[1U] | ((uint32_t)dataBuffer[2U] << 8U)) & 0xFFFFU;
             /* max transfer speed */
             card->commonCIS.maxTransSpeed = dataBuffer[3U];
         }
@@ -1573,7 +1573,8 @@ static status_t SDIO_DecodeCIS(
                                                                ((uint32_t)dataBuffer[9U] << 16U) |
                                                                ((uint32_t)dataBuffer[10U] << 24U);
                 card->funcCIS[(uint32_t)func - 1U].ioCSAProperty  = dataBuffer[11U];
-                card->funcCIS[(uint32_t)func - 1U].ioMaxBlockSize = dataBuffer[12U] | ((uint16_t)dataBuffer[13U] << 8U);
+                card->funcCIS[(uint32_t)func - 1U].ioMaxBlockSize =
+                    ((uint32_t)dataBuffer[12U] | ((uint32_t)dataBuffer[13U] << 8U)) & 0xFFFFU;
                 card->funcCIS[(uint32_t)func - 1U].ioOCR = dataBuffer[14U] | ((uint32_t)dataBuffer[15U] << 8U) |
                                                            ((uint32_t)dataBuffer[16U] << 16U) |
                                                            ((uint32_t)dataBuffer[17U] << 24U);
@@ -1583,19 +1584,20 @@ static status_t SDIO_DecodeCIS(
                 card->funcCIS[(uint32_t)func - 1U].ioSBMinPwr     = dataBuffer[21U];
                 card->funcCIS[(uint32_t)func - 1U].ioSBAvgPwr     = dataBuffer[22U];
                 card->funcCIS[(uint32_t)func - 1U].ioSBMaxPwr     = dataBuffer[23U];
-                card->funcCIS[(uint32_t)func - 1U].ioMinBandWidth = dataBuffer[24U] | ((uint16_t)dataBuffer[25U] << 8U);
+                card->funcCIS[(uint32_t)func - 1U].ioMinBandWidth =
+                    ((uint32_t)dataBuffer[24U] | ((uint32_t)dataBuffer[25U] << 8U)) & 0xFFFFU;
                 card->funcCIS[(uint32_t)func - 1U].ioOptimumBandWidth =
-                    dataBuffer[26U] | ((uint16_t)dataBuffer[27U] << 8U);
-                card->funcCIS[(uint32_t)func - 1U].ioReadyTimeout = dataBuffer[28U] | ((uint16_t)dataBuffer[29U] << 8U);
-
+                    ((uint32_t)dataBuffer[26U] | ((uint32_t)dataBuffer[27U] << 8U)) & 0xFFFFU;
+                card->funcCIS[(uint32_t)func - 1U].ioReadyTimeout =
+                    ((uint32_t)dataBuffer[28U] | ((uint32_t)dataBuffer[29U] << 8U)) & 0xFFFFU;
                 card->funcCIS[(uint32_t)func - 1U].ioHighCurrentAvgCurrent =
-                    dataBuffer[34U] | ((uint16_t)dataBuffer[35U] << 8U);
+                    ((uint32_t)dataBuffer[34U] | ((uint32_t)dataBuffer[35U] << 8U)) & 0xFFFFU;
                 card->funcCIS[(uint32_t)func - 1U].ioHighCurrentMaxCurrent =
-                    dataBuffer[36U] | ((uint16_t)dataBuffer[37U] << 8U);
+                    ((uint32_t)dataBuffer[36U] | ((uint32_t)dataBuffer[37U] << 8U)) & 0xFFFFU;
                 card->funcCIS[(uint32_t)func - 1U].ioLowCurrentAvgCurrent =
-                    dataBuffer[38U] | ((uint16_t)dataBuffer[39U] << 8U);
+                    ((uint32_t)dataBuffer[38U] | ((uint32_t)dataBuffer[39U] << 8U)) & 0xFFFFU;
                 card->funcCIS[(uint32_t)func - 1U].ioLowCurrentMaxCurrent =
-                    dataBuffer[40U] | ((uint16_t)dataBuffer[41U] << 8U);
+                    ((uint32_t)dataBuffer[40U] | ((uint32_t)dataBuffer[41U] << 8U)) & 0xFFFFU;
             }
             else
             {
