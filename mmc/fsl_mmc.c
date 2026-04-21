@@ -2773,7 +2773,6 @@ status_t MMC_EraseGroups(mmc_card_t *card, uint32_t startGroup, uint32_t endGrou
             {
                 assert(endGroup >= startGroup);
                 assert(endGroup - startGroup <= UINT32_MAX - 1U);
-                assert((uint32_t)card->extendedCsd.highCapacityEraseTimeout <= UINT32_MAX / 300U);
                 assert((uint32_t)card->extendedCsd.highCapacityEraseTimeout * 300U <= UINT32_MAX / ((endGroup - startGroup + 1U)));
 
                 eraseTimeout =
@@ -2819,12 +2818,11 @@ status_t MMC_SetBootConfigWP(mmc_card_t *card, uint8_t wp)
 status_t MMC_SetBootPartitionWP(mmc_card_t *card, mmc_boot_partition_wp_t bootPartitionWP)
 {
     assert(card != NULL);
-    assert(bootPartitionWP <= UINT8_MAX);
 
     mmc_extended_csd_config_t extendedCsdconfig;
     extendedCsdconfig.accessMode = kMMC_ExtendedCsdAccessModeWriteBits;
     extendedCsdconfig.ByteIndex  = (uint8_t)kMMC_ExtendedCsdIndexBootPartitionWP;
-    extendedCsdconfig.ByteValue  = (uint8_t)bootPartitionWP;
+    extendedCsdconfig.ByteValue  = bootPartitionWP & 0xFFU;
     extendedCsdconfig.commandSet = kMMC_CommandSetStandard;
     if (kStatus_Success != MMC_SetExtendedCsdConfig(card, &extendedCsdconfig, 0U))
     {
