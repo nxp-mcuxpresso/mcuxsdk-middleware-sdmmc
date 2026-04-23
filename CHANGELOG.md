@@ -3,7 +3,6 @@
 #### 2.7.2
 
 - Bug Fixes
-  - sdio: check card->usrParam.cd before using it.
   - fixed version for sub-drivers. Unified version was used since sdk-ng.
   - Fixed some quality issues.
 
