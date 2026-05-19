@@ -1,5 +1,10 @@
 ### SDMMC Middleware Change Log
 
+#### 2.7.3
+
+- Bug Fixes
+  - Fixed some quality issues.
+
 #### 2.7.2
 
 - Bug Fixes

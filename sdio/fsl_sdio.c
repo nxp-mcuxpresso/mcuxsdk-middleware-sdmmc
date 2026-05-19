@@ -2287,6 +2287,8 @@ status_t SDIO_HandlePendingIOInterrupt(sdio_card_t *card)
     /* call IRQ handler directly if one IRQ handler only */
     if (card->ioIntNums == 1U)
     {
+        assert(card->ioIntIndex >= 1U && card->ioIntIndex <= FSL_SDIO_MAX_IO_NUMS);
+
         if (card->ioIRQHandler[card->ioIntIndex - 1U] != NULL)
         {
             (card->ioIRQHandler[card->ioIntIndex - 1U])(card, card->ioIntIndex);

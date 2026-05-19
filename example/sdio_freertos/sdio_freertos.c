@@ -275,7 +275,8 @@ static void CardDetectTask(void *pvParameters)
 static void AccessCardTask(void *pvParameters)
 {
     sdio_card_t *card = &g_sdio;
-    char ch           = '0';
+    unsigned char ch = '0';
+    int c;
 
     while (ch != 'q')
     {
@@ -295,8 +296,13 @@ static void AccessCardTask(void *pvParameters)
         PRINTF(
             "\r\nInput 'q' to quit card access task.\
             \r\nInput other char to access again.\r\n");
-        ch = GETCHAR();
-        PUTCHAR(ch);
+
+        c = GETCHAR();
+        if (c >= 0 && c <= 0xFF)
+        {
+            ch = c;
+            PUTCHAR(ch);
+        }
     }
 
     PRINTF("\r\nThe card access task will not access card again.\r\n");

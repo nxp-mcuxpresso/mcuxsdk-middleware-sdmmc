@@ -513,6 +513,8 @@ static status_t SD_Transfer(sd_card_t *card, sdmmchost_transfer_t *content, uint
         {
             if ((card->currentTiming == kSD_TimingSDR50Mode) || (card->currentTiming == kSD_TimingSDR104Mode))
             {
+                assert(retuningCount >= 1U);
+
                 if (--retuningCount == 0U)
                 {
                     break;
@@ -1693,6 +1695,8 @@ status_t SD_ReadBlocks(sd_card_t *card, uint8_t *buffer, uint32_t startBlock, ui
 
     while (blockLeft != 0U)
     {
+        assert(blockDone <= UINT32_MAX / FSL_SDMMC_DEFAULT_BLOCK_SIZE);
+
         nextBuffer = (uint8_t *)((uint32_t)buffer + blockDone * FSL_SDMMC_DEFAULT_BLOCK_SIZE);
         if ((!card->noInteralAlign) && (!dataAddrAlign || ((((uint32_t)nextBuffer) & (SDMMC_DATA_BUFFER_ALIGN_CACHE - 1U)) != 0U)))
         {
@@ -1714,6 +1718,8 @@ status_t SD_ReadBlocks(sd_card_t *card, uint8_t *buffer, uint32_t startBlock, ui
                 blockLeft         = 0U;
             }
         }
+
+        assert(startBlock <= UINT32_MAX - blockDone);
 
         error = SD_Read(card, dataAddrAlign ? nextBuffer : alignBuffer, (startBlock + blockDone),
                         FSL_SDMMC_DEFAULT_BLOCK_SIZE, blockCountOneTime);
