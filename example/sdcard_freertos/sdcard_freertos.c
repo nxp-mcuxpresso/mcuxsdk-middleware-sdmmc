@@ -170,7 +170,9 @@ static void AccessCardTask(void *pvParameters)
 {
     sd_card_t *card = &g_sd;
     bool isReadOnly;
-    char ch = '0';
+    unsigned char ch = '0';
+    int c;
+
 
     /* take card access semaphore */
     if (xSemaphoreTake(s_CardAccessSemaphore, portMAX_DELAY) != pdTRUE)
@@ -199,8 +201,13 @@ static void AccessCardTask(void *pvParameters)
         PRINTF(
             "\r\nInput 'q' to quit card access task.\
             \r\nInput other char to read/write/erase data blocks again.\r\n");
-        ch = GETCHAR();
-        PUTCHAR(ch);
+
+        c = GETCHAR();
+        if (c >= 0 && c <= 0xFF)
+        {
+            ch = c;
+            PUTCHAR(ch);
+        }
     }
 
     PRINTF("\r\nThe card access task will not access card again.\r\n");
