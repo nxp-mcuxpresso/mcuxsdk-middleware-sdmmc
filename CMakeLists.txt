@@ -43,7 +43,18 @@ if (CONFIG_MCUX_COMPONENT_middleware.sdmmc.mmc)
     )
 endif()
 
-if (CONFIG_MCUX_COMPONENT_middleware.sdmmc.sdio)
+if (CONFIG_MCUX_COMPONENT_middleware.sdmmc.sdiospi)
+    mcux_add_source(
+        SOURCES sdio/fsl_sdio.c sdio/fsl_sdio.h
+    )
+    mcux_add_include(
+        INCLUDES sdio
+    )
+    mcux_add_configuration(
+        CC "-DSDIO_SPI_ENABLED=1"
+        CX "-DSDIO_SPI_ENABLED=1"
+    )
+elseif (CONFIG_MCUX_COMPONENT_middleware.sdmmc.sdio)
     mcux_add_source(
         SOURCES sdio/fsl_sdio.c sdio/fsl_sdio.h
     )
@@ -150,6 +161,24 @@ if (CONFIG_MCUX_COMPONENT_middleware.sdmmc.host.usdhc.blocking)
     )
 endif()
 
+if (CONFIG_MCUX_COMPONENT_middleware.sdmmc.host.spi)
+    mcux_add_source(
+        SOURCES host/spi/fsl_sdmmc_host.h
+    )
+    mcux_add_include(
+        INCLUDES host/spi
+    )
+endif()
+
+if (CONFIG_MCUX_COMPONENT_middleware.sdmmc.host.spi.blocking)
+    mcux_add_source(
+        SOURCES host/spi/blocking/fsl_sdmmc_host.c host/spi/fsl_sdmmc_host.h
+    )
+    mcux_add_include(
+        INCLUDES host/spi
+    )
+endif()
+
 if (CONFIG_MCUX_COMPONENT_middleware.sdmmc.sdhc.template)
     mcux_add_source(
         SOURCES template/sdhc/sdmmc_config.c template/sdhc/sdmmc_config.h
@@ -180,5 +209,16 @@ if (CONFIG_MCUX_COMPONENT_middleware.sdmmc.usdhc.template)
     mcux_add_include(
         TARGET_FILES sdmmc_config.h
         INCLUDES template/usdhc
+    )
+endif()
+
+if (CONFIG_MCUX_COMPONENT_middleware.sdmmc.spi.template)
+    mcux_add_source(
+        SOURCES template/spi/sdmmc_config.c template/spi/sdmmc_config.h
+        CONFIG TRUE
+    )
+    mcux_add_include(
+        TARGET_FILES sdmmc_config.h
+        INCLUDES template/spi
     )
 endif()

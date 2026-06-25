@@ -25,6 +25,10 @@ menu "sdmmc"
         bool "SDIO card"
         select MCUX_COMPONENT_middleware.sdmmc.common
 
+    config MCUX_COMPONENT_middleware.sdmmc.sdiospi
+        bool "SDIO card (SPI mode)"
+        select MCUX_COMPONENT_middleware.sdmmc.sdio
+
     # host
     config MCUX_COMPONENT_middleware.sdmmc.host.sdhc
         bool "SDHC host controller"
@@ -80,11 +84,28 @@ menu "sdmmc"
             endchoice
         endif
 
+    config MCUX_COMPONENT_middleware.sdmmc.host.spi
+        bool "uSDHC host controller"
+        select MCUX_COMPONENT_middleware.sdmmc.common
+        select MCUX_COMPONENT_middleware.sdmmc.osa
+        select MCUX_COMPONENT_middleware.sdmmc.spi.template
+
+        if MCUX_COMPONENT_middleware.sdmmc.host.spi
+            choice MCUX_COMPONENT_middleware.sdmmc.host.spi.selection
+                prompt "Transfer mode selection"
+                default MCUX_COMPONENT_middleware.sdmmc.host.spi.blocking
+                config MCUX_COMPONENT_middleware.sdmmc.host.spi.blocking
+                    bool "Blocking mode"
+            endchoice
+        endif
+
     # template
     config MCUX_COMPONENT_middleware.sdmmc.sdhc.template
         bool
     config MCUX_COMPONENT_middleware.sdmmc.sdif.template
         bool
     config MCUX_COMPONENT_middleware.sdmmc.usdhc.template
+        bool
+    config MCUX_COMPONENT_middleware.sdmmc.spi.template
         bool
 endmenu
