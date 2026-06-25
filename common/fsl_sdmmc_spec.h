@@ -413,6 +413,7 @@ typedef enum _sdio_command
     kSDIO_SendInterfaceCondition = 8U,  /*!< send interface condition */
     kSDIO_RWIODirect             = 52U, /*!< read/write IO direct command */
     kSDIO_RWIOExtended           = 53U, /*!< read/write IO extended command */
+    kSDIO_SpiCrcOnOff            = 59U, /*!< SPI CRC ON OFF */
 } sdio_command_t;
 
 /*! @brief sdio card individual commands */

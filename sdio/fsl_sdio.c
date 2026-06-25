@@ -266,6 +266,23 @@ static status_t SDIO_SendRca(sdio_card_t *card)
     return kStatus_SDMMC_TransferFailed;
 }
 
+static status_t SDIO_SendCrcEnable(sdio_card_t *card, bool enable)
+{
+    assert(card != NULL);
+
+    sdmmchost_transfer_t content = {0};
+    sdmmchost_cmd_t command      = {0};
+
+    command.index        = (uint32_t)kSDIO_SpiCrcOnOff;
+    command.argument     = (enable ? 1U : 0U);
+    command.responseType = kCARD_ResponseTypeR1;
+
+    content.command = &command;
+    content.data    = NULL;
+
+    return SDMMCHOST_TransferFunction(card->host, &content);
+}
+
 status_t SDIO_CardInActive(sdio_card_t *card)
 {
     assert(card != NULL);
@@ -1731,7 +1748,8 @@ static status_t SDIO_ProbeBusVoltage(sdio_card_t *card)
         ocr |= SDMMC_MASK(kSD_OcrVdd29_30Flag) | SDMMC_MASK(kSD_OcrVdd32_33Flag) | SDMMC_MASK(kSD_OcrVdd33_34Flag);
     }
 
-    if ((card->operationVoltage != kSDMMC_OperationVoltage180V) && (card->usrParam.ioVoltage != NULL) &&
+    if ((!card->usrParam.isSpi) &&
+        (card->operationVoltage != kSDMMC_OperationVoltage180V) && (card->usrParam.ioVoltage != NULL) &&
         (card->usrParam.ioVoltage->type != kSD_IOVoltageCtrlNotSupport) &&
         ((card->host->capability & (uint32_t)kSDMMCHOST_SupportVoltage1v8) != 0U) &&
         ((card->host->capability & ((uint32_t)kSDMMCHOST_SupportSDR104 | (uint32_t)kSDMMCHOST_SupportSDR50 |
@@ -1760,6 +1778,11 @@ static status_t SDIO_ProbeBusVoltage(sdio_card_t *card)
             return kStatus_SDMMC_GoIdleFailed;
         }
 
+        if ((card->usrParam.isSpi) && (kStatus_Success != SDIO_SendCrcEnable(card, true)))
+        {
+            return kStatus_SDMMC_SpiCrcOnOffFailed;
+        }
+
         /* Get IO OCR-CMD5 with arg0 ,set new voltage if needed*/
         if (kStatus_Success != SDIO_SendOperationCondition(card, 0U, NULL))
         {
@@ -1772,7 +1795,7 @@ static status_t SDIO_ProbeBusVoltage(sdio_card_t *card)
         }
 
         /* check if card support 1.8V */
-        if ((accept1V8 & SDMMC_MASK(kSD_OcrSwitch18AcceptFlag)) != 0U)
+        if ((!card->usrParam.isSpi) && ((accept1V8 & SDMMC_MASK(kSD_OcrSwitch18AcceptFlag)) != 0U))
         {
             if ((card->usrParam.ioVoltage != NULL) && (card->usrParam.ioVoltage->type == kSD_IOVoltageCtrlNotSupport))
             {
@@ -1813,9 +1836,13 @@ static status_t sdiocard_init(sdio_card_t *card)
     {
         return kStatus_SDMMC_HostNotReady;
     }
-    /* Identify mode ,set clock to 400KHZ. */
-    card->busClock_Hz = SDMMCHOST_SetCardClock(card->host, SDMMC_CLOCK_400KHZ);
-    SDMMCHOST_SetCardBusWidth(card->host, kSDMMC_BusWdith1Bit);
+
+    if (!card->usrParam.isSpi)
+    {
+        /* Identify mode ,set clock to 400KHZ. */
+        card->busClock_Hz = SDMMCHOST_SetCardClock(card->host, SDMMC_CLOCK_400KHZ);
+        SDMMCHOST_SetCardBusWidth(card->host, kSDMMC_BusWdith1Bit);
+    }
 
     error = SDIO_ProbeBusVoltage(card);
     if (error != kStatus_Success)
@@ -1829,15 +1856,18 @@ static status_t sdiocard_init(sdio_card_t *card)
         return kStatus_SDMMC_SDIO_InvalidCard;
     }
 
-    /* send relative address ,cmd3*/
-    if (kStatus_Success != SDIO_SendRca(card))
+    if (!card->usrParam.isSpi)
     {
-        return kStatus_SDMMC_SendRelativeAddressFailed;
-    }
-    /* select card cmd7 */
-    if (kStatus_Success != SDIO_SelectCard(card, true))
-    {
-        return kStatus_SDMMC_SelectCardFailed;
+        /* send relative address ,cmd3*/
+        if (kStatus_Success != SDIO_SendRca(card))
+        {
+            return kStatus_SDMMC_SendRelativeAddressFailed;
+        }
+        /* select card cmd7 */
+        if (kStatus_Success != SDIO_SelectCard(card, true))
+        {
+            return kStatus_SDMMC_SelectCardFailed;
+        }
     }
 
     /* get card capability */
@@ -1852,16 +1882,19 @@ static status_t sdiocard_init(sdio_card_t *card)
         return kStatus_SDMMC_SDIO_ReadCISFail;
     }
 
-    /* switch data bus width */
-    if (kStatus_Success != SDIO_SetMaxDataBusWidth(card))
+    if (!card->usrParam.isSpi)
     {
-        return kStatus_SDMMC_SetDataBusWidthFailed;
-    }
+        /* switch data bus width */
+        if (kStatus_Success != SDIO_SetMaxDataBusWidth(card))
+        {
+            return kStatus_SDMMC_SetDataBusWidthFailed;
+        }
 
-    /* trying switch to card support timing mode. */
-    if (kStatus_Success != SDIO_SelectBusTiming(card))
-    {
-        return kStatus_SDMMC_SDIO_SwitchHighSpeedFail;
+        /* trying switch to card support timing mode. */
+        if (kStatus_Success != SDIO_SelectBusTiming(card))
+        {
+            return kStatus_SDMMC_SDIO_SwitchHighSpeedFail;
+        }
     }
 
     return kStatus_Success;
@@ -1908,7 +1941,8 @@ status_t SDIO_HostInit(sdio_card_t *card)
         }
     }
 
-    if ((card->usrParam.cd->type == kSD_DetectCardByHostCD) || (card->usrParam.cd->type == kSD_DetectCardByHostDATA3))
+    if ((!card->usrParam.isSpi) && ((card->usrParam.cd->type == kSD_DetectCardByHostCD) ||
+                                    (card->usrParam.cd->type == kSD_DetectCardByHostDATA3)))
     {
         (void)SDMMCHOST_CardDetectInit(card->host, card->usrParam.cd);
     }
@@ -1942,6 +1976,12 @@ void SDIO_HostDoReset(sdio_card_t *card)
 status_t SDIO_PollingCardInsert(sdio_card_t *card, uint32_t status)
 {
     assert(card != NULL);
+
+    if (card->usrParam.isSpi)
+    {
+        return kStatus_Success;
+    }
+
     assert(card->usrParam.cd != NULL);
 
     if (card->usrParam.cd->type == kSD_DetectCardByGpioCD)
@@ -1987,6 +2027,12 @@ status_t SDIO_PollingCardInsert(sdio_card_t *card, uint32_t status)
 bool SDIO_IsCardPresent(sdio_card_t *card)
 {
     assert(card != NULL);
+
+    if (card->usrParam.isSpi)
+    {
+        return true;
+    }
+
     assert(card->usrParam.cd != NULL);
 
     if (card->usrParam.cd->type == kSD_DetectCardByGpioCD)

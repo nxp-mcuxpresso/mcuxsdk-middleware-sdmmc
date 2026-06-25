@@ -122,6 +122,7 @@ enum
     kStatus_SDMMC_CardStatusIdle        = MAKE_STATUS(kStatusGroup_SDMMC, 44U), /*!< card idle  */
     kStatus_SDMMC_CardStatusBusy        = MAKE_STATUS(kStatusGroup_SDMMC, 45U), /*!< card busy */
     kStatus_SDMMC_CardInitFailed        = MAKE_STATUS(kStatusGroup_SDMMC, 46U), /*!< card init failed */
+    kStatus_SDMMC_SpiCrcOnOffFailed     = MAKE_STATUS(kStatusGroup_SDMMC, 47U), /*!< SPI CRC ON/OFF failed */
 };
 
 /*! @brief sdmmc signal line
@@ -282,6 +283,7 @@ typedef struct _sdio_usr_param
     sdio_card_int_t *sdioInt;    /*!< card int */
     uint32_t maxFreq;            /*!< board support maximum frequency */
     uint32_t capability;         /*!< board capability flag */
+    bool isSpi;
 } sdio_usr_param_t;
 
 /*! @brief tuning pattern */
