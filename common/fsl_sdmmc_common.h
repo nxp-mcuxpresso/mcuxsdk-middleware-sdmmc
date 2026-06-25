@@ -24,7 +24,7 @@
  * Definitions
  ******************************************************************************/
 /*! @brief Middleware sdmmc version. */
-#define FSL_SDMMC_DRIVER_VERSION (MAKE_VERSION(2U, 7U, 3U))
+#define FSL_SDMMC_DRIVER_VERSION (MAKE_VERSION(2U, 7U, 4U))
 
 /*! @brief Reverse byte sequence in uint32_t */
 #define SWAP_WORD_BYTE_SEQUENCE(x) (__REV(x))

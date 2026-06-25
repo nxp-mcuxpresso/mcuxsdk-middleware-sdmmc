@@ -1,5 +1,10 @@
 ### SDMMC Middleware Change Log
 
+#### 2.7.4
+
+- New Features
+  - Added SDIO over SPI support.
+
 #### 2.7.3
 
 - Bug Fixes
