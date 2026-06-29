@@ -54,7 +54,9 @@ if (CONFIG_MCUX_COMPONENT_middleware.sdmmc.sdiospi)
         CC "-DSDIO_SPI_ENABLED=1"
         CX "-DSDIO_SPI_ENABLED=1"
     )
-elseif (CONFIG_MCUX_COMPONENT_middleware.sdmmc.sdio)
+endif()
+
+if (CONFIG_MCUX_COMPONENT_middleware.sdmmc.sdio)
     mcux_add_source(
         SOURCES sdio/fsl_sdio.c sdio/fsl_sdio.h
     )

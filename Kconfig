@@ -27,7 +27,7 @@ menu "sdmmc"
 
     config MCUX_COMPONENT_middleware.sdmmc.sdiospi
         bool "SDIO card (SPI mode)"
-        select MCUX_COMPONENT_middleware.sdmmc.sdio
+        select MCUX_COMPONENT_middleware.sdmmc.common
 
     # host
     config MCUX_COMPONENT_middleware.sdmmc.host.sdhc
