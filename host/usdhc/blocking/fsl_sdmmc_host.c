@@ -302,7 +302,7 @@ status_t SDMMCHOST_Init(sdmmchost_t *host)
 #endif
 
 #if defined FSL_FEATURE_USDHC_INSTANCE_SUPPORT_1V8_SIGNALn
-    uint32_t voltage1v8Capability = (uint32_t)FSL_FEATURE_USDHC_INSTANCE_SUPPORT_1V8_SIGNALn(host->hostController.base);
+    uint32_t voltage1v8Capability = (FSL_FEATURE_USDHC_INSTANCE_SUPPORT_1V8_SIGNALn(host->hostController.base) == 1) ? 1U : 0U;
 #else
     uint32_t voltage1v8Capability = 0U;
 #endif
