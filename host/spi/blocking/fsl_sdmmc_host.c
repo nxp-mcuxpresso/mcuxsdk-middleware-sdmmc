@@ -298,7 +298,7 @@ static status_t SDMMCHOST_SpiSendStop(sdmmchost_t *host)
     return SDMMCHOST_SpiSendCommand(host, &command);
 }
 
-static status_t SDMMCHOST_SpiReadData(sdmmchost_t *host, sdmmchost_data_t *data)
+static status_t SDMMCHOST_SpiReadData(sdmmchost_t *host, sdmmchost_data_t *data, bool stop)
 {
     uint8_t *readPtr   = (uint8_t *)data->rxData;
     uint32_t remaining = data->blockCount;
@@ -350,7 +350,7 @@ static status_t SDMMCHOST_SpiReadData(sdmmchost_t *host, sdmmchost_data_t *data)
         remaining--;
     }
 
-    if (data->blockCount > 1U)
+    if (stop && (data->blockCount > 1U))
     {
         return SDMMCHOST_SpiSendStop(host);
     }
@@ -491,7 +491,7 @@ status_t SDMMCHOST_TransferFunction(sdmmchost_t *host, sdmmchost_transfer_t *con
     {
         if (data->rxData != NULL)
         {
-            error = SDMMCHOST_SpiReadData(host, data);
+            error = SDMMCHOST_SpiReadData(host, data, (command->index != kSDIO_RWIOExtended));
         }
         else if (data->txData != NULL)
         {
