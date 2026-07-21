@@ -21,6 +21,11 @@
 #ifndef SD_CMD13_RETRY_TIMES
 #define SD_CMD13_RETRY_TIMES (10)
 #endif
+/*! @brief Retry times to check DAT low after CMD11. */
+#ifndef SD_CMD11_DAT_LOW_RETRY_TIMES
+#define SD_CMD11_DAT_LOW_RETRY_TIMES (100)
+#endif
+
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
@@ -404,10 +409,20 @@ static status_t SD_SwitchVoltage(sd_card_t *card, sdmmc_operation_voltage_t volt
         return kStatus_SDMMC_TransferFailed;
     }
 
-    /* check data line and cmd line status */
-    if (SDMMCHOST_GetSignalLineStatus(card->host, (uint32_t)kSDMMC_SignalLineData0 | (uint32_t)kSDMMC_SignalLineData1 |
-                                                      (uint32_t)kSDMMC_SignalLineData2 |
-                                                      (uint32_t)kSDMMC_SignalLineData3) != 0U)
+    /* Wait for DAT lines to go low after CMD11 (card drives them low). */
+    uint32_t datLines = 0xFFU;
+    for (uint32_t retries = 0; retries < SD_CMD11_DAT_LOW_RETRY_TIMES; retries++)
+    {
+        SDMMC_OSADelay(1U);
+        datLines = SDMMCHOST_GetSignalLineStatus(card->host,
+            (uint32_t)kSDMMC_SignalLineData0 | (uint32_t)kSDMMC_SignalLineData1 |
+            (uint32_t)kSDMMC_SignalLineData2 | (uint32_t)kSDMMC_SignalLineData3);
+        if (datLines == 0U)
+        {
+            break;
+        }
+    }
+    if (datLines != 0U)
     {
         return kStatus_SDMMC_SwitchVoltageFail;
     }
