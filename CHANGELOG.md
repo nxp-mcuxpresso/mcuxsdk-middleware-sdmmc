@@ -1,5 +1,10 @@
 ### SDMMC Middleware Change Log
 
+#### 2.7.5
+
+- Improvements
+  - Converted to use Kconfig generated FreeRTOSConfig_Gen.h.
+
 #### 2.7.4
 
 - New Features
