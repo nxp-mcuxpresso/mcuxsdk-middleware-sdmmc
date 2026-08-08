@@ -1416,7 +1416,7 @@ static status_t MMC_SetMaxDataBusWidth(mmc_card_t *card, mmc_high_speed_timing_t
 
         if (card->busWidth == kMMC_DataBusWidth4bit)
         {
-            if (((card->host->capability & (uint32_t)kSDMMCHOST_Support8BitDataWidth) != 0U) &&
+            if (((card->host->capability & (uint32_t)kSDMMCHOST_Support4BitDataWidth) != 0U) &&
                 ((targetTiming == kMMC_HighSpeedTiming) || (targetTiming == kMMC_HighSpeed200Timing)))
             {
                 SDMMCHOST_SetCardBusWidth(card->host, kSDMMC_BusWdith4Bit);
