@@ -4,6 +4,8 @@
 
 - Improvements
   - Converted to use Kconfig generated FreeRTOSConfig_Gen.h.
+- Bug Fixes
+  - Fixed some quality issues.
 
 #### 2.7.4
 

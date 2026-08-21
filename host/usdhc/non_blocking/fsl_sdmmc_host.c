@@ -81,30 +81,32 @@ static void SDMMCHOST_DetectCardInsertByHost(USDHC_Type *base, void *userData)
 {
     sd_detect_card_t *cd = NULL;
 
+    if (userData == NULL)
+    {
+        return;
+    }
+
     (void)SDMMC_OSAEventSet(&(((sdmmchost_t *)userData)->hostEvent), SDMMC_OSA_EVENT_CARD_INSERTED);
     (void)SDMMC_OSAEventClear(&(((sdmmchost_t *)userData)->hostEvent), SDMMC_OSA_EVENT_CARD_REMOVED);
 
-    if (userData != NULL)
+    cd = (sd_detect_card_t *)(((sdmmchost_t *)userData)->cd);
+    if (cd != NULL)
     {
-        cd = (sd_detect_card_t *)(((sdmmchost_t *)userData)->cd);
-        if (cd != NULL)
+        if (cd->callback != NULL)
         {
-            if (cd->callback != NULL)
+            cd->callback(true, cd->userData);
+        }
+        if (cd->type == kSD_DetectCardByHostDATA3)
+        {
+            USDHC_DisableInterruptSignal(base, kUSDHC_CardInsertionFlag);
+            if (cd->dat3PullFunc != NULL)
             {
-                cd->callback(true, cd->userData);
+                cd->dat3PullFunc(kSD_DAT3PullUp);
             }
-            if (cd->type == kSD_DetectCardByHostDATA3)
-            {
-                USDHC_DisableInterruptSignal(base, kUSDHC_CardInsertionFlag);
-                if (cd->dat3PullFunc != NULL)
-                {
-                    cd->dat3PullFunc(kSD_DAT3PullUp);
-                }
-            }
-            else
-            {
-                USDHC_EnableInterruptSignal(base, kUSDHC_CardRemovalFlag);
-            }
+        }
+        else
+        {
+            USDHC_EnableInterruptSignal(base, kUSDHC_CardRemovalFlag);
         }
     }
 }
@@ -113,31 +115,33 @@ static void SDMMCHOST_DetectCardRemoveByHost(USDHC_Type *base, void *userData)
 {
     sd_detect_card_t *cd = NULL;
 
+    if (userData == NULL)
+    {
+        return;
+    }
+
     (void)SDMMC_OSAEventSet(&(((sdmmchost_t *)userData)->hostEvent), SDMMC_OSA_EVENT_CARD_REMOVED);
     (void)SDMMC_OSAEventClear(&(((sdmmchost_t *)userData)->hostEvent), SDMMC_OSA_EVENT_CARD_INSERTED);
 
-    if (userData != NULL)
+    cd = (sd_detect_card_t *)(((sdmmchost_t *)userData)->cd);
+    if (cd != NULL)
     {
-        cd = (sd_detect_card_t *)(((sdmmchost_t *)userData)->cd);
-        if (cd != NULL)
+        if (cd->callback != NULL)
         {
-            if (cd->callback != NULL)
-            {
-                cd->callback(false, cd->userData);
-            }
+            cd->callback(false, cd->userData);
+        }
 
-            if (cd->type == kSD_DetectCardByHostDATA3)
+        if (cd->type == kSD_DetectCardByHostDATA3)
+        {
+            USDHC_DisableInterruptSignal(base, kUSDHC_CardRemovalFlag);
+            if (cd->dat3PullFunc != NULL)
             {
-                USDHC_DisableInterruptSignal(base, kUSDHC_CardRemovalFlag);
-                if (cd->dat3PullFunc != NULL)
-                {
-                    cd->dat3PullFunc(kSD_DAT3PullUp);
-                }
+                cd->dat3PullFunc(kSD_DAT3PullUp);
             }
-            else
-            {
-                USDHC_EnableInterruptSignal(base, kUSDHC_CardInsertionFlag);
-            }
+        }
+        else
+        {
+            USDHC_EnableInterruptSignal(base, kUSDHC_CardInsertionFlag);
         }
     }
 }
@@ -466,6 +470,7 @@ status_t SDMMCHOST_TransferFunction(sdmmchost_t *host, sdmmchost_transfer_t *con
             unAlignSize          = ((uint32_t)content->data->rxData -
                            (((uint32_t)content->data->rxData) & (~(SDMMC_DATA_BUFFER_ALIGN_CACHE - 1))));
             sgDataList1.dataSize = unAlignSize;
+            assert(SDMMC_DATA_BUFFER_ALIGN_CACHE >= unAlignSize);
             unAlignSize          = SDMMC_DATA_BUFFER_ALIGN_CACHE - unAlignSize;
 
 #if ((defined __DCACHE_PRESENT) && __DCACHE_PRESENT) || (defined FSL_FEATURE_HAS_L1CACHE && FSL_FEATURE_HAS_L1CACHE)

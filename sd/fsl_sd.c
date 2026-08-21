@@ -724,7 +724,7 @@ static status_t SD_SwitchFunction(sd_card_t *card, uint32_t mode, uint32_t group
     sdmmchost_data_t data        = {0};
     status_t error               = kStatus_Success;
 
-    assert(group <= UINT32_MAX / 4U);
+    assert(group <= kSD_GroupCurrentLimit);
 
     command.index    = (uint32_t)kSD_Switch;
     command.argument = (mode << 31U | 0x00FFFFFFU);
