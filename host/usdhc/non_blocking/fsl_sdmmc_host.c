@@ -8,7 +8,7 @@
 
 #include "fsl_sdmmc_host.h"
 #include "fsl_sdmmc_common.h"
-#if ((defined __DCACHE_PRESENT) && __DCACHE_PRESENT) || (defined FSL_FEATURE_HAS_L1CACHE && FSL_FEATURE_HAS_L1CACHE)
+#if SDMMCHOST_ENABLE_CACHE_CONTROL
 #if !(defined(FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL) && FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL)
 #include "fsl_cache.h"
 #endif
@@ -371,7 +371,7 @@ static void SDMMCHOST_TransferCompleteCallback(USDHC_Type *base,
     (void)SDMMC_OSAEventSet(&(((sdmmchost_t *)userData)->hostEvent), eventStatus);
 }
 
-#if ((defined __DCACHE_PRESENT) && __DCACHE_PRESENT) || (defined FSL_FEATURE_HAS_L1CACHE && FSL_FEATURE_HAS_L1CACHE)
+#if SDMMCHOST_ENABLE_CACHE_CONTROL
 #if defined SDMMCHOST_ENABLE_CACHE_LINE_ALIGN_TRANSFER && SDMMCHOST_ENABLE_CACHE_LINE_ALIGN_TRANSFER
 void SDMMCHOST_InstallCacheAlignBuffer(sdmmchost_t *host, void *cacheAlignBuffer, uint32_t cacheAlignBufferSize)
 {
@@ -412,7 +412,7 @@ status_t SDMMCHOST_TransferFunction(sdmmchost_t *host, sdmmchost_transfer_t *con
         dmaConfig.admaTableWords = host->dmaDesBufferWordsNum;
 
 #if defined SDMMCHOST_ENABLE_CACHE_LINE_ALIGN_TRANSFER && SDMMCHOST_ENABLE_CACHE_LINE_ALIGN_TRANSFER
-#if ((defined __DCACHE_PRESENT) && __DCACHE_PRESENT) || (defined FSL_FEATURE_HAS_L1CACHE && FSL_FEATURE_HAS_L1CACHE)
+#if SDMMCHOST_ENABLE_CACHE_CONTROL
         if ((host->cacheAlignBuffer == NULL) || ((host->cacheAlignBufferSize == 0U)))
         {
             /* application should register cache line size align buffer for host driver maintain the unalign data
@@ -473,7 +473,7 @@ status_t SDMMCHOST_TransferFunction(sdmmchost_t *host, sdmmchost_transfer_t *con
             assert(SDMMC_DATA_BUFFER_ALIGN_CACHE >= unAlignSize);
             unAlignSize          = SDMMC_DATA_BUFFER_ALIGN_CACHE - unAlignSize;
 
-#if ((defined __DCACHE_PRESENT) && __DCACHE_PRESENT) || (defined FSL_FEATURE_HAS_L1CACHE && FSL_FEATURE_HAS_L1CACHE)
+#if SDMMCHOST_ENABLE_CACHE_CONTROL
             scatterGatherData.sgData.dataAddr = host->cacheAlignBuffer;
 #endif
             scatterGatherData.sgData.dataSize = unAlignSize;
@@ -484,14 +484,14 @@ status_t SDMMCHOST_TransferFunction(sdmmchost_t *host, sdmmchost_transfer_t *con
                          SDMMC_DATA_BUFFER_ALIGN_CACHE);
             sgDataList0.dataSize = content->data->blockCount * content->data->blockSize - SDMMC_DATA_BUFFER_ALIGN_CACHE;
             sgDataList0.dataList = &sgDataList1;
-#if ((defined __DCACHE_PRESENT) && __DCACHE_PRESENT) || (defined FSL_FEATURE_HAS_L1CACHE && FSL_FEATURE_HAS_L1CACHE)
+#if SDMMCHOST_ENABLE_CACHE_CONTROL
             sgDataList1.dataAddr = (uint32_t *)((uint32_t)host->cacheAlignBuffer + SDMMC_DATA_BUFFER_ALIGN_CACHE);
 #endif
             sgDataList1.dataList = NULL;
         }
 #endif
 
-#if ((defined __DCACHE_PRESENT) && __DCACHE_PRESENT) || (defined FSL_FEATURE_HAS_L1CACHE && FSL_FEATURE_HAS_L1CACHE)
+#if SDMMCHOST_ENABLE_CACHE_CONTROL
 #if !(defined(FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL) && FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL)
         if (host->enableCacheControl == kSDMMCHOST_CacheControlRWBuffer)
         {
@@ -552,7 +552,7 @@ status_t SDMMCHOST_TransferFunction(sdmmchost_t *host, sdmmchost_transfer_t *con
 #if defined SDMMCHOST_ENABLE_CACHE_LINE_ALIGN_TRANSFER && SDMMCHOST_ENABLE_CACHE_LINE_ALIGN_TRANSFER
             if (((uint32_t)content->data->rxData % SDMMC_DATA_BUFFER_ALIGN_CACHE) != 0U)
             {
-#if ((defined __DCACHE_PRESENT) && __DCACHE_PRESENT) || (defined FSL_FEATURE_HAS_L1CACHE && FSL_FEATURE_HAS_L1CACHE)
+#if SDMMCHOST_ENABLE_CACHE_CONTROL
 #if !(defined(FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL) && FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL)
                 if (host->enableCacheControl == kSDMMCHOST_CacheControlRWBuffer)
                 {
@@ -573,7 +573,7 @@ status_t SDMMCHOST_TransferFunction(sdmmchost_t *host, sdmmchost_transfer_t *con
             else
 #endif
             {
-#if ((defined __DCACHE_PRESENT) && __DCACHE_PRESENT) || (defined FSL_FEATURE_HAS_L1CACHE && FSL_FEATURE_HAS_L1CACHE)
+#if SDMMCHOST_ENABLE_CACHE_CONTROL
 #if !(defined(FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL) && FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL)
                 /* invalidate the cache for read */
                 if (host->enableCacheControl == kSDMMCHOST_CacheControlRWBuffer)
@@ -595,7 +595,7 @@ status_t SDMMCHOST_TransferFunction(sdmmchost_t *host, sdmmchost_transfer_t *con
 #if defined SDMMCHOST_ENABLE_CACHE_LINE_ALIGN_TRANSFER && SDMMCHOST_ENABLE_CACHE_LINE_ALIGN_TRANSFER
 status_t SDMMCHOST_ScatterGatherTransferFunction(sdmmchost_t *host, sdmmchost_scatter_gather_transfer_t *content)
 {
-#if ((defined __DCACHE_PRESENT) && __DCACHE_PRESENT) || (defined FSL_FEATURE_HAS_L1CACHE && FSL_FEATURE_HAS_L1CACHE)
+#if SDMMCHOST_ENABLE_CACHE_CONTROL
 #if !(defined(FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL) && FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL)
     sdmmchost_scatter_gather_data_list_t *dataList;
 #endif
@@ -617,7 +617,7 @@ status_t SDMMCHOST_ScatterGatherTransferFunction(sdmmchost_t *host, sdmmchost_sc
         dmaConfig.admaTable      = host->dmaDesBuffer;
         dmaConfig.admaTableWords = host->dmaDesBufferWordsNum;
 
-#if ((defined __DCACHE_PRESENT) && __DCACHE_PRESENT) || (defined FSL_FEATURE_HAS_L1CACHE && FSL_FEATURE_HAS_L1CACHE)
+#if SDMMCHOST_ENABLE_CACHE_CONTROL
         if ((host->cacheAlignBuffer == NULL) || ((host->cacheAlignBufferSize == 0U)))
         {
             /* application should register cache line size align buffer for host driver maintain the unalign data
@@ -681,7 +681,7 @@ status_t SDMMCHOST_ScatterGatherTransferFunction(sdmmchost_t *host, sdmmchost_sc
     {
         if ((content->data != NULL) && (content->data->dataDirection == kUSDHC_TransferDirectionReceive))
         {
-#if ((defined __DCACHE_PRESENT) && __DCACHE_PRESENT) || (defined FSL_FEATURE_HAS_L1CACHE && FSL_FEATURE_HAS_L1CACHE)
+#if SDMMCHOST_ENABLE_CACHE_CONTROL
 #if !(defined(FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL) && FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL)
             /* invalidate the cache for read */
             if (host->enableCacheControl == kSDMMCHOST_CacheControlRWBuffer)

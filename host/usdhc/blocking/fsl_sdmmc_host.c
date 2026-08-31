@@ -8,7 +8,7 @@
 
 #include "fsl_sdmmc_host.h"
 #include "fsl_sdmmc_common.h"
-#if ((defined __DCACHE_PRESENT) && __DCACHE_PRESENT) || (defined FSL_FEATURE_HAS_L1CACHE && FSL_FEATURE_HAS_L1CACHE)
+#if SDMMCHOST_ENABLE_CACHE_CONTROL
 #if !(defined(FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL) && FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL)
 #include "fsl_cache.h"
 #endif
@@ -174,7 +174,7 @@ status_t SDMMCHOST_TransferFunction(sdmmchost_t *host, sdmmchost_transfer_t *con
         dmaConfig.admaTable      = host->dmaDesBuffer;
         dmaConfig.admaTableWords = host->dmaDesBufferWordsNum;
 
-#if ((defined __DCACHE_PRESENT) && __DCACHE_PRESENT) || (defined FSL_FEATURE_HAS_L1CACHE && FSL_FEATURE_HAS_L1CACHE)
+#if SDMMCHOST_ENABLE_CACHE_CONTROL
 #if !(defined(FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL) && FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL)
         if (host->enableCacheControl == (uint32_t)kSDMMCHOST_CacheControlRWBuffer)
         {
@@ -194,7 +194,7 @@ status_t SDMMCHOST_TransferFunction(sdmmchost_t *host, sdmmchost_transfer_t *con
         /* host error recovery */
         SDMMCHOST_ErrorRecovery(host->hostController.base);
     }
-#if ((defined __DCACHE_PRESENT) && __DCACHE_PRESENT) || (defined FSL_FEATURE_HAS_L1CACHE && FSL_FEATURE_HAS_L1CACHE)
+#if SDMMCHOST_ENABLE_CACHE_CONTROL
 #if !(defined(FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL) && FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL)
     else
     {

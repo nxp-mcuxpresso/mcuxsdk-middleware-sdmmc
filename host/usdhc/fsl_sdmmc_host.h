@@ -26,9 +26,16 @@
 #define FSL_SDMMC_HOST_ADAPTER_VERSION FSL_SDMMC_DRIVER_VERSION
 
 #if ((defined __DCACHE_PRESENT) && __DCACHE_PRESENT) || (defined FSL_FEATURE_HAS_L1CACHE && FSL_FEATURE_HAS_L1CACHE)
+#define SDMMCHOST_ENABLE_CACHE_CONTROL 1
+#else
+#define SDMMCHOST_ENABLE_CACHE_CONTROL 0
+#endif
+
+#if SDMMCHOST_ENABLE_CACHE_CONTROL
 #ifndef SDMMCHOST_ENABLE_CACHE_LINE_ALIGN_TRANSFER
 #define SDMMCHOST_ENABLE_CACHE_LINE_ALIGN_TRANSFER 0
 #endif
+
 #if SDMMCHOST_ENABLE_CACHE_LINE_ALIGN_TRANSFER
 #if !(defined FSL_USDHC_ENABLE_SCATTER_GATHER_TRANSFER && FSL_USDHC_ENABLE_SCATTER_GATHER_TRANSFER)
 #error "missing definition of macro FSL_USDHC_ENABLE_SCATTER_GATHER_TRANSFER"
@@ -199,7 +206,7 @@ typedef struct _sdmmchost_
     void *cd;                    /*!< card detect */
     void *cardInt;               /*!< call back function for card interrupt */
 
-#if ((defined __DCACHE_PRESENT) && __DCACHE_PRESENT) || (defined FSL_FEATURE_HAS_L1CACHE && FSL_FEATURE_HAS_L1CACHE)
+#if SDMMCHOST_ENABLE_CACHE_CONTROL
     uint8_t enableCacheControl; /*!< Cache maintain flag in host driver. Host driver only maintain cache when
                                    FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL is not defined and enableCacheControl =
                                    kSDMMCHOST_CacheControlRWBuffer. While FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL is

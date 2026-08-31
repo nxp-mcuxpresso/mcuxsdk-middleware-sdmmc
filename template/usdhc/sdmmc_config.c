@@ -63,7 +63,7 @@ void BOARD_SD_Config(void *card, sd_cd_t cd, uint32_t hostIRQPriority, void *use
 
     s_host.dmaDesBuffer         = s_sdmmcHostDmaBuffer;
     s_host.dmaDesBufferWordsNum = BOARD_SDMMC_HOST_DMA_DESCRIPTOR_BUFFER_SIZE;
-#if ((defined __DCACHE_PRESENT) && __DCACHE_PRESENT) || (defined FSL_FEATURE_HAS_L1CACHE && FSL_FEATURE_HAS_L1CACHE)
+#if SDMMCHOST_ENABLE_CACHE_CONTROL
     s_host.enableCacheControl = BOARD_SDMMC_HOST_CACHE_CONTROL;
 #if defined SDMMCHOST_ENABLE_CACHE_LINE_ALIGN_TRANSFER && SDMMCHOST_ENABLE_CACHE_LINE_ALIGN_TRANSFER
     s_host.cacheAlignBuffer     = s_sdmmcCacheLineAlignBuffer;
@@ -92,7 +92,7 @@ void BOARD_SDIO_Config(void *card, sd_cd_t cd, uint32_t hostIRQPriority, sdio_in
 
     s_host.dmaDesBuffer         = s_sdmmcHostDmaBuffer;
     s_host.dmaDesBufferWordsNum = BOARD_SDMMC_HOST_DMA_DESCRIPTOR_BUFFER_SIZE;
-#if ((defined __DCACHE_PRESENT) && __DCACHE_PRESENT) || (defined FSL_FEATURE_HAS_L1CACHE && FSL_FEATURE_HAS_L1CACHE)
+#if SDMMCHOST_ENABLE_CACHE_CONTROL
     s_host.enableCacheControl = BOARD_SDMMC_HOST_CACHE_CONTROL;
 #if defined SDMMCHOST_ENABLE_CACHE_LINE_ALIGN_TRANSFER && SDMMCHOST_ENABLE_CACHE_LINE_ALIGN_TRANSFER
     s_host.cacheAlignBuffer     = s_sdmmcCacheLineAlignBuffer;
@@ -133,7 +133,7 @@ void BOARD_MMC_Config(void *card, uint32_t hostIRQPriority)
 
     s_host.dmaDesBuffer         = s_sdmmcHostDmaBuffer;
     s_host.dmaDesBufferWordsNum = BOARD_SDMMC_HOST_DMA_DESCRIPTOR_BUFFER_SIZE;
-#if ((defined __DCACHE_PRESENT) && __DCACHE_PRESENT) || (defined FSL_FEATURE_HAS_L1CACHE && FSL_FEATURE_HAS_L1CACHE)
+#if SDMMCHOST_ENABLE_CACHE_CONTROL
     s_host.enableCacheControl = BOARD_SDMMC_HOST_CACHE_CONTROL;
 #if defined SDMMCHOST_ENABLE_CACHE_LINE_ALIGN_TRANSFER && SDMMCHOST_ENABLE_CACHE_LINE_ALIGN_TRANSFER
     s_host.cacheAlignBuffer     = s_sdmmcCacheLineAlignBuffer;
