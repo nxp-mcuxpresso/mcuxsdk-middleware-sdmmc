@@ -82,6 +82,9 @@ menu "sdmmc"
                 config MCUX_COMPONENT_middleware.sdmmc.host.usdhc.non_blocking
                     bool "Non-blocking mode"
             endchoice
+
+            config SDMMC_HOST_USDHC_FORCE_CACHE_CONTROL
+                bool "uSDHC host controller force cache control"
         endif
 
     config MCUX_COMPONENT_middleware.sdmmc.host.spi

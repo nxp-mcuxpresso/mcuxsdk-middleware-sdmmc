@@ -1,5 +1,10 @@
 ### SDMMC Middleware Change Log
 
+#### 2.7.6
+
+- Improvements
+  - Introduced Kconfig SDMMC_HOST_USDHC_FORCE_CACHE_CONTROL.
+
 #### 2.7.5
 
 - Improvements
